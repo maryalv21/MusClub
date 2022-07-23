@@ -7,6 +7,7 @@ import com.ironhack.project.edgeservice.controller.dto.MemberPostDTO;
 import com.ironhack.project.edgeservice.controller.interfaces.EdgeMemberController;
 import com.ironhack.project.edgeservice.models.Member;
 import com.ironhack.project.edgeservice.service.interfaces.EdgeMemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@Slf4j
+@CrossOrigin(origins="http://localhost:4200")
 public class EdgeMemberControllerImpl implements EdgeMemberController {
 
     @Autowired
@@ -30,10 +32,10 @@ public class EdgeMemberControllerImpl implements EdgeMemberController {
         return edgeMemberService.findAll();
     }
 
-    @GetMapping("/members/{id}")
+    @GetMapping("/members/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public MemberGetDTO getById(@PathVariable Long id) {
-        MemberGetDTO memberGetDTO = edgeMemberService.getById(id);
+    public MemberGetDTO getByEmail(@PathVariable String email) {
+        MemberGetDTO memberGetDTO = edgeMemberService.getByEmail(email);
         return memberGetDTO;
     }
 

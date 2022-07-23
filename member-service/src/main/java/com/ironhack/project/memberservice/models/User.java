@@ -2,7 +2,9 @@ package com.ironhack.project.memberservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.Set;
 
 @Entity
@@ -14,6 +16,7 @@ public class User {
 
     private String username;
 
+    @Min(5)
     private String password;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;

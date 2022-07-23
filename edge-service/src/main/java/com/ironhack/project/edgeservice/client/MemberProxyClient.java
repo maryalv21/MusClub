@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient("member-service")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public interface MemberProxyClient {
 
     @GetMapping("/members")
     public List<Member> findAll();
 
-    @GetMapping("/members/{id}")
+    @GetMapping("/members/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public MemberGetDTO getById(@PathVariable Long id);
+    public MemberGetDTO getByEmail(@PathVariable String email);
 
     @PostMapping("/members")
     Member createMember(@RequestBody MemberPostDTO memberPostDTO);

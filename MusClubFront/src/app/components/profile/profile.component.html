@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Welcome {{username}}</h1>
+</div>
+<div class="profile">
+  <div class="member">
+    <div class="data">
+      <img class="avatar" src="../../../assets/images/img_avatar5.png" class="avatar" alt="Avatar">
+      <p>NAME: {{ name | titlecase}}</p>
+      <p>PLAYERNAME: {{ playerName }}</p>
+      <p>EMAIL: {{ email }}</p>
+      <p>LEVEL:  {{ level }}</p>
+    </div>
+  </div>
+  <div class="btn-container">
+        <button  class="btn" (click)="onClick()"> {{ profile }} </button>
+  </div>
+    <div *ngIf="showMember"></div>
+
+    <div class = "button">
+      <button type="button"(click)="deleteMember(member.id)">remove</button>
+    </div>
+    <div class = "button">
+    <button type="button">update</button>
+    </div>
+</div>
+
+

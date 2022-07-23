@@ -9,18 +9,21 @@ h1 {
   margin: 0;
   padding: 0;
 }
+.login {
+  display: flex;
+}
 .custom-form {
-  min-width: 300px;
-  max-width: 60%;
-  margin: 0px auto;
+  display: block;
+  min-width: 40px;
+  max-width: 40%;
   background: rgba(255, 255, 255, 0.15);
-  padding: 2rem 3rem;
+  padding: 1rem 2rem;
   margin: auto;
   border-radius: 2.5rem;
   background-color: #ecf0f3;
   box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
   color: black;
-  margin-top: 10rem;
+  margin-top: 2rem;
 }
 .custom-form input {
   display: block;
@@ -38,14 +41,20 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   border: none;
-  font-size: 0.875rem;
-  color: #ffffff;
+  font-size: 20px;
+  color: rgb(21, 65, 21);
   font-weight: bold;
   background-color: #bcd8c1;
-  width: 100%;
+  width: 50%;
+  height: 70%;
   display: block;
-  padding: 0.875rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 1.5rem;
   box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
   cursor: pointer;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.75rem;
 }

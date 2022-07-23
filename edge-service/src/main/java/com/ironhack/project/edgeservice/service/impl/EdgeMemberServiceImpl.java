@@ -19,8 +19,9 @@ public class EdgeMemberServiceImpl implements EdgeMemberService {
     private MemberProxyClient memberProxyClient;
 
     @Override
-    public MemberGetDTO getById(Long id) {
-        return memberProxyClient.getById(id);
+    public MemberGetDTO getByEmail(String email) {
+
+        return memberProxyClient.getByEmail(email);
     }
 
 

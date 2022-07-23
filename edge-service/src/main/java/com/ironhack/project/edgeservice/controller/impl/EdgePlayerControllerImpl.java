@@ -3,16 +3,15 @@ package com.ironhack.project.edgeservice.controller.impl;
 import com.ironhack.project.edgeservice.controller.interfaces.EdgePlayerController;
 import com.ironhack.project.edgeservice.models.Player;
 import com.ironhack.project.edgeservice.service.interfaces.EdgePlayerService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
+@CrossOrigin(origins="http://localhost:4200")
 public class EdgePlayerControllerImpl implements EdgePlayerController {
-
     @Autowired
     private EdgePlayerService playerService;
 

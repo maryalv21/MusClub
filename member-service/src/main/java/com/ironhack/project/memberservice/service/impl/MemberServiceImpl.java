@@ -21,8 +21,8 @@ public class MemberServiceImpl implements MemberService {
     private MemberRepository memberRepository;
 
     @Override
-    public MemberGetDTO getById(Long id) {
-        Optional<Member> optionalMember = memberRepository.findById(id);
+    public MemberGetDTO getByEmail(String email) {
+        Optional<Member> optionalMember = memberRepository.getByEmail(email);
         if (!optionalMember.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found");
         }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient("player-service")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public interface PlayerProxyClient {
 
     @PostMapping("/players")

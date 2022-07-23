@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MemberControllerImpl implements MemberController {
 
     @Autowired
@@ -30,10 +31,10 @@ public class MemberControllerImpl implements MemberController {
         return memberList;
     }
 
-    @GetMapping("/members/{id}")
+    @GetMapping("/members/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public MemberGetDTO getById(@PathVariable @Validated Long id) {
-        MemberGetDTO memberGetDTO = memberService.getById(id);
+    public MemberGetDTO getByEmail(@PathVariable @Validated String email) {
+        MemberGetDTO memberGetDTO = memberService.getByEmail(email);
         return memberGetDTO;
     }
 

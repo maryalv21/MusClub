@@ -1,15 +1,55 @@
-<div class="register">
-  <form class="custom-form" method="post">
-    <h1>Register</h1>
-    <input type="email" [(ngModel)]="email" name="email" placeholder="Email"
-      required="required"
-    />
-    <input type="password" [(ngModel)]="password" name="password"
-      placeholder="Password" required="required"
-    />
-    <input type="password" [(ngModel)]="confirmPassword" name="password"
-      placeholder="Repeat the password" required="required"
-    />
-    <button type="submit" (click)="register()">Register</button>
-  </form>
+<div class="register" (ngSubmit)="register()">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+    <div>
+        <input class="input" type="text" matInput placeholder="Name..." formControlName="name">
+        <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
+            Name is <strong>required</strong>
+        </p>
+        <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
+            Name can't contains digits
+        </p>
+    </div>
+    <div>
+      <input class="input" type="text" matInput placeholder="username..." formControlName="username">
+        <p class="error-msg" *ngIf="usernameInput.invalid && (usernameInput.touched || usernameInput.dirty)">
+            UserName is <strong>required</strong>
+        </p>
+    </div>
+    <div>
+      <input class="input" type="text" matInput placeholder="Playername..." formControlName="playerName">
+        <p class="error-msg" *ngIf="playernameInput.invalid && (playernameInput.touched || playernameInput.dirty)">
+            PlayerName is <strong>required</strong>
+        </p>
+    </div>
+    <div>
+        <input class="input" type="email" placeholder="Email..." formControlName="email">
+        <p class="error-msg" *ngIf="emailInput.invalid && (emailInput.touched || emailInput.dirty)">Email should be valid</p>
+    </div>
+    <div>
+        <input class="input" type="password" placeholder="Password..." formControlName="password">
+        <p class="error-msg" *ngIf="passwordInput.invalid && (passwordInput.touched || passwordInput.dirty)">Password should be at least 5 char long</p>
+    </div>
+    <div>
+        <input class="input" type="password" placeholder="Password confirmation..." formControlName="passwordConfirmation">
+        <p class="error-msg" *ngIf="registerForm.hasError('passwordMatch') && passwordInput.valid && passwordConfirmationInput.touched">Passwords should match</p>
+    </div>
+    <div>
+        <select class="input" formControlName="role">
+            <option value="" invalid>Please select role</option>
+            <option *ngFor="let role of roles" [value]="role">{{ role | titlecase }}</option>
+        </select>
+        <p class="error-msg" *ngIf="roleInput.invalid && (roleInput.touched || roleInput.dirty)">Please select a role</p>
+    </div>
+    <div>
+      <select class="input" formControlName="level">
+          <option value="" invalid>Please select level</option>
+          <option *ngFor="let level of levels" [value]="level">{{ level | titlecase }}</option>
+      </select>
+      <p class="error-msg" *ngIf="levelInput.invalid && (levelInput.touched || levelInput.dirty)">Please select a level</p>
+  </div>
+    <div>
+        <button class="button" type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid">Submit</button>
+    </div>
+    <h4 class="register-text">Already have an account? <a [routerLink]="['/login']">Login</a></h4>
+</form>
 </div>

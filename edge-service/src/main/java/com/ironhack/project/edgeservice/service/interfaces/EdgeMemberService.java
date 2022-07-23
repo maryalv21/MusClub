@@ -11,7 +11,7 @@ public interface EdgeMemberService {
 
     List<Member> findAll();
 
-    MemberGetDTO getById(Long id);
+    MemberGetDTO getByEmail(String email);
 
     Member createMember(MemberPostDTO memberPostDTO);
 
