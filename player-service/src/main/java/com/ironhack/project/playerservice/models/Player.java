@@ -46,5 +46,14 @@ public class Player {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", playerName='" + playerName + '\'' +
+                '}';
+    }
 }
 

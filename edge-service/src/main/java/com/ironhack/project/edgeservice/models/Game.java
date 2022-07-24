@@ -1,32 +1,34 @@
 package com.ironhack.project.edgeservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.lang.reflect.Member;
 
+@Entity
 public class Game {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String date;
 
     private String  address;
 
-    private Long userId;
-/*    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "member_id")
-    @NotEmpty
-    private Member member;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="user_id")
+    @JsonIgnore
+    private User user;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Player> playerList;*/
 
     public Game() {
     }
 
-    public Game(String date, String  address, Member member) {
+    public Game(String date, String address, User user) {
         this.date = date;
         this.address = address;
-        //this.member = member;
-        //this.playerList = new ArrayList<>(4);
+        this.user = user;
     }
 
     public Long getId() {
@@ -45,27 +47,19 @@ public class Game {
         this.date = date;
     }
 
-    public String  getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String  address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-/*    public Member getMember() {
-        return member;
+    public User getUser() {
+        return user;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-    public List<Player> getPlayerList() {
-        return playerList;
-    }
-
-    public void setPlayerList(List<Player> playerList) {
-        this.playerList = playerList;
-    }*/
 }

@@ -48,9 +48,8 @@ public class GameControllerImpl implements GameController {
     //Method to delete Game for Member
     @DeleteMapping("/games/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Optional<Game> deleteGame(@PathVariable Long id) {
-
-        return gameService.deleteGame(id);
+    public void deleteGame(@PathVariable Long id) {
+        gameService.deleteGame(id);
     }
 
     

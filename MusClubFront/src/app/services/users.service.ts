@@ -17,11 +17,14 @@ export class UsersService {
   }
 
   register(member: Member): Observable<any> {
-    return this.http.post("http://localhost:8080/members", member);
+    return this.http.post(`${this.BASE_URL}`, member);
   }
 
   loginMember(email:string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa(`${email}`));
       return this.http.get<any>(`${this.BASE_URL}/${email}`);
+      //return this.http.get<Member>(`${this.BASE_URL}/login`, { headers: headers });
    }
 
   deleteMember(id: number): Observable<any> {

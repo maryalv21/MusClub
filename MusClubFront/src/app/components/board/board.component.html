@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../board/board.component.css">
 
     <title>Welcome to Mus Games</title>
 </head>
@@ -23,75 +22,178 @@
             <p class="intro">Welcome to Mus Board</p>
             <p class="title">Please click on New Game if you want to create a new Mus Game</p>
             <input type="datetime-local" name="fechahora" step="1" min="2022-01-01T00:00" max="2022-12-31T12:00"
-                value="2013-01-01T12:00">
-
-            <select name="select">
+                value="2013-01-01T12:00" formControlName="dateInput">
+            <select name="select" formControlName="addressInput">
                 <option value="value1">Bar La Alegria</option>
                 <option value="value2" selected>Bar Remember</option>
                 <option value="value3">Taberna del Tio Paco</option>
             </select>
-            <button type="button" class="maryalv-matchCard-clickable" style=" background-color: darkseagreen;"
-                onclick="newGame()">New
-                Game
+            <button type="button"   class="maryalv-matchCard-clickable" style=" background-color: darkseagreen;">
+              [routerLink]="['/new-game']", (click)="createGame()"
+                New Game
             </button>
         </div>
         <div class="row">&nbsp; &nbsp;</div>
-        <div class="header">
-            <div class="row">
-                <div class="cell">
-                    <div class="maryalv-matchCard">
+          <div class="header">
+              <div class="row">
+                  <div class="cell">
+                      <div class="maryalv-matchCard">
+                          <div class="title">&nbsp; &nbsp; Game 1 </div>
+                          <div class="maryalv-matchCard">
 
-                        <div class="title">&nbsp; &nbsp; Game 1 </div>
-
-                        <div class="maryalv-matchCard">
-
-                            <div class="cell">
-                                <div class="avatar" style="width:42%;max-width:78px;">
-                                    <img src="../../../assets/images/img_avatar3.png" class="avatar" alt="Avatar"
-                                        style="width:100%;opacity:0.85">
-                                    <div class="w3-container">
-                                        <h4><b>John</b></h4>
-                                        <p>Beginner</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cell">
-                                <div class="avatar" style="width:42%;max-width:78px;">
-                                    <img src="../../../assets/images/img_avatar5.png" class="avatar" alt="Avatar"
-                                        style="width:100%;opacity:0.85">
-                                    <div class="w3-container">
-                                        <h4><b>Jane</b></h4>
-                                        <p>Beginner</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cell">
-                                <div class="avatar" style="width:42%;max-width:78px;">
-                                    <img src="../../../assets/images/img_avatar3.png" class="avatar" alt="Avatar"
-                                        style="width:100%;opacity:0.85">
-                                    <div class="w3-container">
-                                        <h4><b>John</b></h4>
-                                        <p>Beginner</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cell">
-                                <div class="avatar" style="width:42%;max-width:78px;">
-                                    <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
-                                        style="width:100%;opacity:0.85">
-                                    <div class="w3-container">
-                                        <h4><b>Player</b></h4>
-                                        <p>Beginner</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                              <div class="cell">
+                                  <div class="avatar" style="width:42%;max-width:78px;">
+                                      <img src="../../../assets/images/img_avatar3.png" class="avatar" alt="Avatar"
+                                          style="width:100%;opacity:0.85">
+                                      <div class="w3-container">
+                                          <h4><b>John</b></h4>
+                                          <p>Beginner</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="cell">
+                                  <div class="avatar" style="width:42%;max-width:78px;">
+                                      <img src="../../../assets/images/img_avatar5.png" class="avatar" alt="Avatar"
+                                          style="width:100%;opacity:0.85">
+                                      <div class="w3-container">
+                                          <h4><b>Jane</b></h4>
+                                          <p>Beginner</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="cell">
+                                  <div class="avatar" style="width:42%;max-width:78px;">
+                                      <img src="../../../assets/images/img_avatar3.png" class="avatar" alt="Avatar"
+                                          style="width:100%;opacity:0.85">
+                                      <div class="w3-container">
+                                          <h4><b>John</b></h4>
+                                          <p>Beginner</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="cell">
+                                  <div class="avatar" style="width:42%;max-width:78px;">
+                                      <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
+                                          style="width:100%;opacity:0.85">
+                                      <div class="w3-container">
+                                          <h4><b>Player</b></h4>
+                                          <p>Beginner</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
                         <p class="title">&nbsp; &nbsp; Bar Remember | 19/07/2022 5:00 pm</p>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="header">
+          <div class="row">
+              <div class="cell">
+                  <div class="maryalv-matchCard">
+                      <div class="title">&nbsp; &nbsp; Game 2 </div>
+                      <div class="maryalv-matchCard">
+
+                          <div class="cell">
+                              <div class="avatar" style="width:42%;max-width:78px;">
+                                  <img src="../../../assets/images/img_avatar3.png" class="avatar" alt="Avatar"
+                                      style="width:100%;opacity:0.85">
+                                  <div class="w3-container">
+                                      <h4><b>John</b></h4>
+                                      <p>Beginner</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="cell">
+                              <div class="avatar" style="width:42%;max-width:78px;">
+                                  <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
+                                      style="width:100%;opacity:0.85">
+                                  <div class="w3-container">
+                                      <h4><b>Player</b></h4>
+                                      <p>Beginner</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="cell">
+                              <div class="avatar" style="width:42%;max-width:78px;">
+                                  <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
+                                      style="width:100%;opacity:0.85">
+                                  <div class="w3-container">
+                                      <h4><b>Player</b></h4>
+                                      <p>Beginner</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="cell">
+                              <div class="avatar" style="width:42%;max-width:78px;">
+                                  <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
+                                      style="width:100%;opacity:0.85">
+                                  <div class="w3-container">
+                                      <h4><b>Player</b></h4>
+                                      <p>Beginner</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    <p class="title">&nbsp; &nbsp; Bar La alegria | 29/08/2022 5:00 pm</p>
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="header">
+      <div class="row">
+          <div class="cell">
+              <div class="maryalv-matchCard">
+                  <div class="title">&nbsp; &nbsp; Game 3 </div>
+                  <div class="maryalv-matchCard">
+
+                      <div class="cell">
+                          <div class="avatar" style="width:42%;max-width:78px;">
+                              <img src="../../../assets/images/img_avatar5.png" class="avatar" alt="Avatar"
+                                  style="width:100%;opacity:0.85">
+                              <div class="w3-container">
+                                  <h4><b>John</b></h4>
+                                  <p>Beginner</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="cell">
+                          <div class="avatar" style="width:42%;max-width:78px;">
+                              <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
+                                  style="width:100%;opacity:0.85">
+                              <div class="w3-container">
+                                  <h4><b>Jane</b></h4>
+                                  <p>Beginner</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="cell">
+                          <div class="avatar" style="width:42%;max-width:78px;">
+                              <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
+                                  style="width:100%;opacity:0.85">
+                              <div class="w3-container">
+                                  <h4><b>John</b></h4>
+                                  <p>Beginner</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="cell">
+                          <div class="avatar" style="width:42%;max-width:78px;">
+                              <img src="../../../assets/images/img_icon_add.png" class="avatar" alt="Avatar"
+                                  style="width:100%;opacity:0.85">
+                              <div class="w3-container">
+                                  <h4><b>Player</b></h4>
+                                  <p>Beginner</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                <p class="title">&nbsp; &nbsp; Taberna del Tio Paco | 25/08/2022 11:00 am</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 </body>
 

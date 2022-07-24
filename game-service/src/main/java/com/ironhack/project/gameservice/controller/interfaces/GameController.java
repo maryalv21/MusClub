@@ -14,5 +14,5 @@ public interface GameController {
 
     Game updateGame(Long id, Game game);
 
-    Optional<Game> deleteGame(Long id);
+    void deleteGame(Long id);
 }

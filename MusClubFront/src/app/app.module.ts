@@ -10,6 +10,8 @@ import { BoardComponent } from './components/board/board.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NewGameComponent } from './components/new-game/new-game.component';
+import { LoginMemberComponent } from './components/login-member/login-member.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     BoardComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewGameComponent,
+    LoginMemberComponent
   ],
   imports: [
     BrowserModule,

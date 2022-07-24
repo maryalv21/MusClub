@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Member } from 'src/app/Models/Member.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -9,50 +11,43 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProfileComponent implements OnInit {
 
-  username: string | null;
-
-  @Input('memberProp')
   member: Member;
+
   @Input()
-  index: number;
+  password: number;
   @Input()
-  password: string;
-  @Input()
-  trainerRemoved: EventEmitter<number> = new EventEmitter();
-  @Input()
-  memberId!:number;
+  email:string;
 
 
-  name: string;
-  playerName: string;
-  email: string;
-  level: string;
+
+  username: string | null;
   id: number;
-
-  @Output()
-  deleteMemberEvent: EventEmitter<number>;
-
   showMember: boolean = false;
   profile: string;
+  name: string;
+  level:string;
+  playerName: string;
+  role: string;
 
-  constructor(private usersService: UsersService
+  constructor(private usersService: UsersService,
+    private authService: AuthService,
+    private router: Router
      ) {
     this.username = '';
     this.member = new Member(0, '', 0, '', '', '', '', '');
     this.id= 0;
-    this.name = '';
-    this.playerName = '';
+    this.name= '';
     this.email = '';
+    this.password = 0;
+    this.role = '';
+    this.playerName= '';
     this.level = '';
-    this.password = '';
-    this.index=0;
-    this.deleteMemberEvent = new EventEmitter<number>();
     this.profile = 'View Stats';
   }
 
   ngOnInit(): void {
     // localStorage.getItem("currentUser");
-    this.username = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    //this.username = JSON.parse(localStorage.getItem("currentUser") as string).username;
     this.getDetails()
   }
 
@@ -61,42 +56,24 @@ export class ProfileComponent implements OnInit {
   }
 
   getDetails(){
-    this.usersService.loginMember(this.password).subscribe(
+    this.usersService.loginMember(this.email).subscribe(
       dataResult => {
-        console.log(dataResult)
-        console.log(dataResult[0].name)
-        const id: number = dataResult[0].id;
-        const name: string = dataResult[0].name;
-        const playerName: string = dataResult[0].playerName;
-        const email: string = dataResult[0].email;
-        const level: string = dataResult[0].level;
-        this.id = id;
-        this.name = name;
-        this.playerName = playerName;
-        this.email = email;
-        this.level = level;
+          console.log(dataResult)
+          const id: number = dataResult[0].id;
+          const name: string = dataResult[0].name;
+          const playerName: string = dataResult[0].playerName;
+          const email: string = dataResult[0].email;
+          const level: string = dataResult[0].level;
       }
     )
   }
 
-  deleteMember(id: number): void {
-    this.usersService.deleteMember(id).subscribe(
-      dataResult => {
-    console.log('eliminando member...' + id);
+  logout(): void {
+    console.log('logging out...');
+    this.authService.logout();
 
-    this.deleteMemberEvent.emit(id);
-    }
-    )
-  }
+    this.router.navigate(['/login']);
 
-  onClick(): void{
-    if(this.showMember === false ){
-      this.showMember = !this.showMember;
-      this.profile = 'Hide Stats';
-    } else {
-      this.showMember = false;
-      this.profile = 'View Stats';
-    }
   }
 
 }

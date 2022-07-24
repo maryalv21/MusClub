@@ -1,11 +1,11 @@
-package com.ironhack.project.edgeservice.service.interfaces;
+package com.ironhack.project.edgeservice.controller.interfaces;
 
 import com.ironhack.project.edgeservice.models.Game;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface EdgeGameService {
+public interface EdgeGameController {
 
     List<Game> FindAll();
 

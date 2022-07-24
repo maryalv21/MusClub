@@ -59,4 +59,14 @@ public class Member extends User{
     public void setLevel(String level) {
         this.level = level;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "name='" + name + '\'' +
+                ", playerName='" + playerName + '\'' +
+                ", email='" + email + '\'' +
+                ", level='" + level + '\'' +
+                '}';
+    }
 }

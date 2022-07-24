@@ -27,27 +27,29 @@ public class GameServiceImpl implements GameService {
         return gameRepository.save(game);
     }
 
+    //Revisar
     @Override
     public Game updateGame(Long id, Game game) {
         Optional<Game> optionalGame = gameRepository.findById(id);
         if(!optionalGame.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
-        optionalGame.get().setId(game.getId());
-        optionalGame.get().setDate(game.getDate());
-        optionalGame.get().setAddress(game.getAddress());
+        game.setId(optionalGame.get().getId());
+        game.setDate(optionalGame.get().getDate());
+        game.setAddress(optionalGame.get().getAddress());
+        game.setUser(optionalGame.get().getUser());
         gameRepository.save(optionalGame.get());
         return game;
     }
 
-
     @Override
-    public Optional<Game> deleteGame(Long id) {
+    public void deleteGame(Long id) {
         Optional<Game> optionalGame = gameRepository.findById(id);
         if(!optionalGame.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
-        gameRepository.delete(optionalGame.get());
-        return optionalGame;
+        Game game = new Game();
+        game.setId(optionalGame.get().getId());
+        gameRepository.delete(game);
     }
 }

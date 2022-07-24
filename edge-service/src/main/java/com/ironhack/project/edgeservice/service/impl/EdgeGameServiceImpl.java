@@ -2,6 +2,7 @@ package com.ironhack.project.edgeservice.service.impl;
 
 import com.ironhack.project.edgeservice.client.GameProxyClient;
 import com.ironhack.project.edgeservice.models.Game;
+import com.ironhack.project.edgeservice.repository.GameRepository;
 import com.ironhack.project.edgeservice.service.interfaces.EdgeGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,27 +11,32 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EdgeEdgeGameServiceImpl implements EdgeGameService {
+public class EdgeGameServiceImpl implements EdgeGameService {
 
     @Autowired
-    private GameProxyClient proxyClient;
+    private GameProxyClient gameProxyClient;
+
+    @Autowired
+    private GameRepository gameRepository;
+
     @Override
     public List<Game> FindAll() {
-        return proxyClient.FindAll();
+
+        return gameProxyClient.FindAll();
     }
 
     @Override
     public Game createGame(Game game) {
-        return proxyClient.createGame(game);
+        return gameProxyClient.createGame(game);
     }
 
     @Override
     public Game updateGame(Long id, Game game) {
-        return proxyClient.updateGame(id, game);
+        return gameProxyClient.updateGame(id, game);
     }
 
     @Override
-    public Optional<Game> deleteGame(Long id) {
-        return proxyClient.deleteGame(id);
+    public void deleteGame(Long id) {
+        gameProxyClient.deleteGame(id);
     }
 }

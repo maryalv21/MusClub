@@ -13,5 +13,5 @@ public interface GameService {
 
     Game updateGame(Long id, Game game);
 
-    Optional<Game> deleteGame(Long id);
+    void deleteGame(Long id);
 }

@@ -1,5 +1,6 @@
 package com.ironhack.project.gameservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ironhack.project.gameservice.classes.Address;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Game {
@@ -18,22 +20,19 @@ public class Game {
 
     @NotEmpty
     private String  address;
-/*    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "member_id")
-    @NotEmpty
-    private Member member;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Player> playerList;*/
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="user_id")
+    @JsonIgnore
+    private User user;
 
     public Game() {
     }
 
-    public Game(String date, String  address, Member member) {
+    public Game(String date, String address, User user) {
         this.date = date;
         this.address = address;
-        //this.member = member;
-        //this.playerList = new ArrayList<>(4);
+        this.user = user;
     }
 
     public Long getId() {
@@ -52,27 +51,29 @@ public class Game {
         this.date = date;
     }
 
-    public String  getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String  address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-/*    public Member getMember() {
-        return member;
+    public User getUser() {
+        return user;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<Player> getPlayerList() {
-        return playerList;
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", address='" + address + '\'' +
+                ", user=" + user +
+                '}';
     }
-
-    public void setPlayerList(List<Player> playerList) {
-        this.playerList = playerList;
-    }*/
 }

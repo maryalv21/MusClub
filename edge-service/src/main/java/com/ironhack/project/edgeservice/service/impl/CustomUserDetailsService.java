@@ -1,5 +1,8 @@
 package com.ironhack.project.edgeservice.service.impl;
 
+import com.ironhack.project.edgeservice.client.GameProxyClient;
+import com.ironhack.project.edgeservice.client.MemberProxyClient;
+import com.ironhack.project.edgeservice.client.PlayerProxyClient;
 import com.ironhack.project.edgeservice.models.User;
 import com.ironhack.project.edgeservice.repository.UserRepository;
 import com.ironhack.project.edgeservice.security.CustomUserDetails;
@@ -16,6 +19,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private GameProxyClient gameProxyClient;
+
+    @Autowired
+    private MemberProxyClient memberProxyClient;
+
+    @Autowired
+    private PlayerProxyClient playerProxyClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,5 +1,7 @@
 package com.ironhack.project.gameservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,20 +14,12 @@ public class Role {
     @JoinColumn(name = "user_id")
     private User user;
 
-/*    @OneToOne(mappedBy = "role")
-    private Member member;
-
-    @OneToOne(mappedBy = "role")
-    private Player player;*/
-
     public Role() {
     }
 
     public Role(String name, User user) {
         this.name = name;
         this.user = user;
-        //this.member = member;
-        //this.player = player;
     }
 
     public Long getId() {
@@ -52,19 +46,12 @@ public class Role {
         this.user = user;
     }
 
-/*    public Member getMember() {
-        return member;
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", user=" + user +
+                '}';
     }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }*/
 }

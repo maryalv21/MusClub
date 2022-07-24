@@ -1,9 +1,9 @@
-<div class="register">
-  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+<!-- <div class="register">
+  <form (ngSubmit)="createGame()" [formGroup]="registerForm">
     <div>
-        <input class="input" type="text" matInput placeholder="Name..." formControlName="name">
+        <input class="input" type="text" placeholder="Name..." formControlName="name">
         <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
-            Name is <strong>required</strong>
+            Player Name is <strong>required</strong>
         </p>
         <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
             Name can't contains digits
@@ -52,4 +52,4 @@
     </div>
     <h4 class="register-text">Already have an account? <a [routerLink]="['/login']">Login</a></h4>
 </form>
-</div>
+</div> -->

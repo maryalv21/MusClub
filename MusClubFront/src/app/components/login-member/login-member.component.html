@@ -1,0 +1,16 @@
+<div class="login" >
+  <!-- <form class="custom-form" (ngSubmit)="login()" [formGroup]="loginFormMember"> -->
+    <div class="form">
+      <form class="custom-form" (ngSubmit)="onSubmitMember()" [formGroup]="loginFormMember">
+          <h1>Login as Member</h1>
+        <input class="input" type="email" placeholder="Email..." formControlName="email">
+            <p class="error-msg" *ngIf="emailInput.invalid && (emailInput.touched || emailInput.dirty)">Email should be valid</p>
+        <input class="input" type="username" placeholder="Username..." formControlName="username">
+            <p class="error-msg" *ngIf="usernameInput.invalid && (usernameInput.touched || usernameInput.dirty)">Introduce Username</p>
+        <input class="input" type="password" placeholder="Password..." formControlName="password">
+            <p class="error-msg" *ngIf="passwordInput.invalid && (passwordInput.touched || passwordInput.dirty)">Password should be at least 5 char long</p>
+        <button class="button" type="submit" [disabled]="loginFormMember.invalid" >Log in</button>
+        <button class="button" type="submit" (click)="goBack()" >Go Back</button>
+      </form>
+    </div>
+</div>
