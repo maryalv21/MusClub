@@ -39,6 +39,17 @@ h1 {
   border: 0 none;
   background: #ebf5fc;
 }
+
+h4 {
+  font-size: 20px;
+  color: rgb(21, 65, 21);
+}
+
+a {
+  font-size: 20px;
+  color: rgb(21, 65, 21);
+}
+
 .custom-form button {
   text-transform: uppercase;
   letter-spacing: 0.15em;

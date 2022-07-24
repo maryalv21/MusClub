@@ -17,9 +17,9 @@ public interface MemberProxyClient {
     @GetMapping("/members")
     public List<Member> findAll();
 
-    @GetMapping("/members/{email}")
+    @GetMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MemberGetDTO getByEmail(@PathVariable String email);
+    public MemberGetDTO getById(@PathVariable Long id);
 
     @PostMapping("/members")
     Member createMember(@RequestBody MemberPostDTO memberPostDTO);

@@ -30,10 +30,10 @@ public class MemberControllerImpl implements MemberController {
         return memberList;
     }
 
-    @GetMapping("/members/{email}")
+    @GetMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MemberGetDTO getByEmail(@PathVariable @Validated String email) {
-        MemberGetDTO memberGetDTO = memberService.getByEmail(email);
+    public MemberGetDTO getById(@PathVariable @Validated Long id) {
+        MemberGetDTO memberGetDTO = memberService.getById(id);
         return memberGetDTO;
     }
 

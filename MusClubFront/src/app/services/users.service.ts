@@ -20,10 +20,8 @@ export class UsersService {
     return this.http.post(`${this.BASE_URL}`, member);
   }
 
-  loginMember(email:string): Observable<any> {
-    let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa(`${email}`));
-      return this.http.get<any>(`${this.BASE_URL}/${email}`);
+  loginMember(password:number): Observable<any> {
+      return this.http.get<any>(`${this.BASE_URL}/${password}`);
       //return this.http.get<Member>(`${this.BASE_URL}/login`, { headers: headers });
    }
 

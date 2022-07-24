@@ -32,10 +32,10 @@ public class EdgeMemberControllerImpl implements EdgeMemberController {
         return edgeMemberService.findAll();
     }
 
-    @GetMapping("/members/{email}")
+    @GetMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MemberGetDTO getByEmail(@PathVariable String email) {
-        MemberGetDTO memberGetDTO = edgeMemberService.getByEmail(email);
+    public MemberGetDTO getById(@PathVariable Long id) {
+        MemberGetDTO memberGetDTO = edgeMemberService.getById(id);
         return memberGetDTO;
     }
 

@@ -1,22 +1,27 @@
 <div class="login" >
-  <!-- <form class="custom-form" (ngSubmit)="login()" [formGroup]="loginFormMember"> -->
+  <form (ngSubmit)="onSubmitPlayer()" [formGroup]="loginFormPlayer">
     <div class="form">
-    <form class="custom-form" (ngSubmit)="onSubmitPlayer()" [formGroup]="loginFormPlayer">
-      <h1>Login as Visitor</h1>
-      <input class="input" type="text"  placeholder="Name..." formControlName="name">
-          <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
-              Name is <strong>required</strong>
-          </p>
-          <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
-              Name can't contains digits
-          </p>
-      <input class="input" type="text" placeholder="Playername..." formControlName="playerName">
-          <p class="error-msg" *ngIf="playernameInput.invalid && (playernameInput.touched || playernameInput.dirty)">
-              PlayerName is <strong>required</strong>
-          </p>
-      <button class="button" type="submit" [disabled]="loginFormPlayer.invalid">Log in</button>
-      <h4 class="register-text">Don't have an account? <a [routerLink]="['/register']">Create new account</a></h4>
-      <h4 class="register-text">Do you have an account? <a [routerLink]="['/login-member']">Go to login for member</a></h4>
-    </form>
-  </div>
+      <form class="custom-form" (ngSubmit)="onSubmitPlayer()" [formGroup]="loginFormPlayer">
+        <h1>Login as Visitor</h1>
+          <input class="input" type="text"  placeholder="Name..." formControlName="name">
+            <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
+                Name is <strong>required</strong>
+            </p>
+            <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
+                Name can't contains digits
+            </p>
+          <input class="input" type="text" placeholder="Playername..." formControlName="playerName">
+            <p class="error-msg" *ngIf="playernameInput.invalid && (playernameInput.touched || playernameInput.dirty)">
+                PlayerName is <strong>required</strong>
+            </p>
+            <button class="button" type="submit" [disabled]="loginFormPlayer.invalid">Log in</button>
+            <h4 class="register-text">Don't have an account?
+              <a [routerLink]="['/register']">Create new account</a>
+            </h4>
+            <h4 class="register-text">Do you have an account?
+              <a [routerLink]="['/login-member']">Go to login for member</a>
+            </h4>
+      </form>
+    </div>
+  </form>
 </div>

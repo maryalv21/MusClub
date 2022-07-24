@@ -21,15 +21,15 @@ public class SecurityConfiguration {
         http.csrf().disable();
         http.cors().disable();
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/members").hasRole("MEMBER")
-                .antMatchers(HttpMethod.GET, "/members/**").hasRole("MEMBER")
-                .antMatchers(HttpMethod.POST, "/members").hasRole("MEMBER")
-                .antMatchers(HttpMethod.POST, "/members/**").hasRole("MEMBER")
-                .antMatchers(HttpMethod.PUT, "/members/**").hasRole("MEMBER")
-                .antMatchers(HttpMethod.DELETE, "/members/**").hasRole("MEMBER")
-                .antMatchers(HttpMethod.GET, "/users").hasRole("MEMBER")
-                .antMatchers(HttpMethod.POST, "/users").hasRole("MEMBER")
-                .antMatchers(HttpMethod.GET, "/login").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.GET, "/members").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.GET, "/members/**").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.POST, "/members").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.POST, "/members/**").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.PUT, "/members/**").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.DELETE, "/members/**").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.GET, "/users").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.POST, "/users").hasRole("MEMBER")
+                //.antMatchers(HttpMethod.GET, "/login").hasRole("MEMBER")
                 .anyRequest().permitAll();
         return http.build();
     }

@@ -11,8 +11,8 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProfileComponent implements OnInit {
 
+  @Input()
   member: Member;
-
   @Input()
   password: number;
   @Input()
@@ -56,14 +56,18 @@ export class ProfileComponent implements OnInit {
   }
 
   getDetails(){
-    this.usersService.loginMember(this.email).subscribe(
+    this.usersService.loginMember(this.password).subscribe(
       dataResult => {
           console.log(dataResult)
-          const id: number = dataResult[0].id;
-          const name: string = dataResult[0].name;
-          const playerName: string = dataResult[0].playerName;
-          const email: string = dataResult[0].email;
-          const level: string = dataResult[0].level;
+          for(let i=0; i < dataResult.length; i++){
+            console.log('estoy dentro del for')
+            const id: number = dataResult[1].id;
+            const name: string = dataResult[1].name;
+            const playerName: string = dataResult[1].playerName;
+            const email: string = dataResult[1].email;
+            const level: string = dataResult[1].level;
+          }
+          console.log('estoy fuera del for')
       }
     )
   }

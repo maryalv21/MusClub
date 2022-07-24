@@ -16,10 +16,7 @@ import { CustomValidator } from 'src/app/utils/CustomValidator';
 export class LoginMemberComponent implements OnInit {
   member: Member;
   loginFormMember: FormGroup;
-  nameInput: FormControl;
   usernameInput: FormControl;
-  playernameInput: FormControl;
-  emailInput: FormControl;
   passwordInput: FormControl;
 
   constructor(public userService: UsersService,
@@ -27,14 +24,10 @@ export class LoginMemberComponent implements OnInit {
     private router:Router,
     private activatedRoute: ActivatedRoute) {
     this.member = new Member(0, '', 0, '', '', '', '', '');
-    this.nameInput = new FormControl('', [Validators.required, CustomValidator.noDigits]);
-    this.playernameInput = new FormControl('', [Validators.required, CustomValidator.noDigits]);
-    this.emailInput = new FormControl('', [Validators.required, Validators.email]);
-    this.passwordInput = new FormControl('', [Validators.required, CustomValidator.passwordLength(5, 10)]);
     this.usernameInput = new FormControl('', [Validators.required]);
+    this.passwordInput = new FormControl('', [Validators.required, CustomValidator.passwordLength(5, 10)]);
     this.loginFormMember = new FormGroup({
       username: this.usernameInput,
-      email: this.emailInput,
       password: this.passwordInput
     });
    }
@@ -42,18 +35,7 @@ export class LoginMemberComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmitMember(): void {
-     console.log('Form submitted');
-     const email: string = this.emailInput.value;
-     this.userService.loginMember(email).subscribe( data => {
-        console.log('Login successful');
-        console.log(data);
-        localStorage.removeItem('currentUser');
-         localStorage.setItem('currentUser', JSON.stringify(data));
-
-     });
-     this.router.navigate(['profile'])
-   }
+  
 
   login() {
     this.authService.login(this.loginFormMember.value.username, this.loginFormMember.value.password).subscribe(
