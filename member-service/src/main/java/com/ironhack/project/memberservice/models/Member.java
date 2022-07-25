@@ -8,11 +8,11 @@ import java.util.Set;
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 public class Member extends User{
-    @NotEmpty
+
     private String name;
-    @NotEmpty
+
     private String playerName;
-    @NotEmpty
+
     private String email;
     private String level;
 

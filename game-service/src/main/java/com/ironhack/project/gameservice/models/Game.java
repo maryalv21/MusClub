@@ -15,10 +15,9 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
+
     private String date;
 
-    @NotEmpty
     private String  address;
 
     @OneToOne(cascade = CascadeType.ALL)

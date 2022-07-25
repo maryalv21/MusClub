@@ -20,6 +20,11 @@ public class EdgeGameServiceImpl implements EdgeGameService {
     private GameRepository gameRepository;
 
     @Override
+    public Game findById(Long id) {
+        return gameProxyClient.findById(id);
+    }
+
+    @Override
     public List<Game> FindAll() {
 
         return gameProxyClient.FindAll();

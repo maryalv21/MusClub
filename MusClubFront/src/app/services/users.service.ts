@@ -16,14 +16,26 @@ export class UsersService {
 
   }
 
+  isAuthenticated(): boolean {
+    const token: string | null = localStorage.getItem('currentMember');
+    return token !== null;
+  }
+
+  login(username: string, password: string): Observable<Member> {
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa(`${username}:${password}`));
+
+    return this.http.get<Member>(`${this.BASE_URL}/`, { headers: headers });
+  }
+
+  logout(): void {
+    // Remove user from local storage to log user out
+    localStorage.removeItem('currentMember');
+  }
+
   register(member: Member): Observable<any> {
     return this.http.post(`${this.BASE_URL}`, member);
   }
-
-  loginMember(password:number): Observable<any> {
-      return this.http.get<any>(`${this.BASE_URL}/${password}`);
-      //return this.http.get<Member>(`${this.BASE_URL}/login`, { headers: headers });
-   }
 
   deleteMember(id: number): Observable<any> {
     return this.http.delete(`${this.BASE_URL}/${id}`)
@@ -38,5 +50,5 @@ export class UsersService {
    }
 
 
-  }
+}
 

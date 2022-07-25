@@ -14,6 +14,9 @@ public interface GameProxyClient {
     @GetMapping("/games")
     List<Game> FindAll();
 
+    @GetMapping("/games/{id}")
+    Game findById(@PathVariable Long id);
+
     @PostMapping("/games")
     Game createGame(@RequestBody Game game);
 

@@ -22,6 +22,13 @@ public class GameControllerImpl implements GameController {
     @Autowired
     private GameRepository gameRepository;
 
+    @GetMapping("/games/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Game findById(@PathVariable Long id) {
+        Game game = gameService.findById(id);
+        return game ;
+    }
+
     //Method to Find All Games for player and Member
     @GetMapping("/games")
     @ResponseStatus(HttpStatus.OK)

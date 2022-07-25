@@ -21,7 +21,6 @@ public class Game {
     @JsonIgnore
     private User user;
 
-
     public Game() {
     }
 

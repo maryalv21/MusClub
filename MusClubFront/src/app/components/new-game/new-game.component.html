@@ -1,2 +1,52 @@
+<div id="games" class="register">
+      <form (ngSubmit)="submitGame()" [formGroup]= "registerForm">
+      <select class="input" name="select" formControlName="address">
+          <option value="" invalid>Please select address</option>
+          <option *ngFor="let address of addresses">{{ address | titlecase }}</option>
+          <option value="value1">Bar La Alegria</option>
+          <option value="value2">Bar Remember</option>
+          <option value="value3">Taberna Tio Paco</option>
+      </select>
+      <p class="error-msg" *ngIf="addressInput.invalid && addressInput.touched">
+        please select address
+      </p>
+      <input class="input" type="text" placeholder="Date" formControlName="date">
+          <p class="error-msg" *ngIf="dateInput.invalid && dateInput.touched">
+            please select a date
+          </p>
+      <select class="input" name="avatar" formControlName="avatar">
+        <option value="" invalid>Please choose your avatar</option>
+        <option *ngFor="let avatar of avatars">{{ avatar | titlecase }}></option>
+        <option value="" img src="../../../assets/images/img_avatar3.png">Avatar1</option>
+        <option value="" img src="../../../assets/images/img_avatar5.png">Avatar2</option>
+      </select>
+
+      <input class="input" type="text" placeholder="PlayerName1" formControlName="playerName">
+      <p class="error-msg" *ngIf="playerNameInput.invalid && playerNameInput.touched">
+        please select Name Player1
+      </p>
+      <input class="input" type="text" placeholder="PlayerName2" formControlName="playerName">
+      <p class="error-msg" *ngIf="playerNameInput.invalid && playerNameInput.touched">
+        please select Name Player2
+      </p>
+      <input class="input" type="text" placeholder="PlayerName3" formControlName="playerName">
+      <p class="error-msg" *ngIf="playerNameInput.invalid && playerNameInput.touched">
+        please select Name Player3
+      </p>
+      <input class="input" type="text" placeholder="PlayerName4" formControlName="playerName">
+      <p class="error-msg" *ngIf="playerNameInput.invalid && playerNameInput.touched">
+        please select Name Player4
+      </p>
+      <select class="input" formControlName="level">
+        <option value="" invalid>Please select level</option>
+        <option *ngFor="let level of levels" [value]="level">{{ level | titlecase }}</option>
+      </select>
+      <p class="error-msg" *ngIf="levelInput.invalid && levelInput.touched">Please select a level</p>
+        <button class="button" type="submit" >Submit</button>
+        <button class="button" type="reset">Reset</button>
+    </form>
+</div>
+
+
 
 

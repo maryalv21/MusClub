@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router:Router,
     private activatedRoute:ActivatedRoute) {
-    this.member = new Member(0, '', 0, '', '', '', '', '');
+    this.member = new Member(0, '', '', '', '', '', '', '');
     this.roles = ['MEMBER'];
     this.levels = ['beginner'];
     this.nameInput = new FormControl('', [Validators.required, CustomValidator.noDigits]);

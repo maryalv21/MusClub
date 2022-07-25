@@ -15,15 +15,17 @@ import { CustomValidator } from 'src/app/utils/CustomValidator';
 })
 export class LoginMemberComponent implements OnInit {
   member: Member;
+  members: Member[];
   loginFormMember: FormGroup;
   usernameInput: FormControl;
   passwordInput: FormControl;
 
-  constructor(public userService: UsersService,
+  constructor(public usersService: UsersService,
     private authService: AuthService,
     private router:Router,
     private activatedRoute: ActivatedRoute) {
-    this.member = new Member(0, '', 0, '', '', '', '', '');
+    this.member = new Member(0, '', '', '', '', '', '', '');
+    this.members = [];
     this.usernameInput = new FormControl('', [Validators.required]);
     this.passwordInput = new FormControl('', [Validators.required, CustomValidator.passwordLength(5, 10)]);
     this.loginFormMember = new FormGroup({
@@ -35,17 +37,14 @@ export class LoginMemberComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
 
   login() {
-    this.authService.login(this.loginFormMember.value.username, this.loginFormMember.value.password).subscribe(
-      (user: User) => {
+    this.authService.login(this.loginFormMember.value.username,
+      this.loginFormMember.value.password).subscribe(
+      (data) => {
         console.log('Login successful');
-        console.log(user);
-        // Store user in local storage to keep user logged in between page refreshes
-        localStorage.removeItem('currentUser');
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        // Redirect to home page
+        console.log(data.username);
         this.router.navigate(['/profile']);
       }
     );

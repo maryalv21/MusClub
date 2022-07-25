@@ -12,7 +12,9 @@ import java.util.Optional;
 public interface MemberService {
 
     List<Member> findAll();
-    MemberGetDTO getById(Long id);
+
+    Member login(String username);
+    //MemberGetDTO getById(Long id);
     Member createMember(MemberPostDTO memberPostDTO);
     public MemberDTO updateMember(Long id, MemberDTO memberDTO);
     public void deleteMember(Long id);

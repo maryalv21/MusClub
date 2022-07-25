@@ -1,5 +1,5 @@
 export class Member {
-    constructor(private _id: number, private _name: string, private _password: number,
+    constructor(private _id: number, private _name: string, private _password: string,
     private _playerName: string, private _email: string, private _role: string,
     private _level: string, private _username: string) {}
 
@@ -13,7 +13,7 @@ export class Member {
   public get username(): string {
     return this._username;
   }
-  
+
   public set username(value: string) {
     this._username = value;
   }
@@ -43,10 +43,10 @@ export class Member {
   public set playerName(value: string) {
     this._playerName = value;
   }
-  public get password(): number {
+  public get password(): string {
     return this._password;
   }
-  public set password(value: number) {
+  public set password(value: string) {
     this._password = value;
   }
   public get name(): string {

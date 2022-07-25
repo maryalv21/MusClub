@@ -23,6 +23,12 @@ public class EdgeGameControllerImpl implements EdgeGameController {
     @Autowired
     private GameProxyClient gameProxyClient;
 
+    @GetMapping("/games/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Game findById(@PathVariable Long id) {
+        return edgeGameService.findById(id);
+    }
+
 
     @GetMapping("/games")
     @ResponseStatus(HttpStatus.OK)

@@ -11,73 +11,69 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProfileComponent implements OnInit {
 
-  @Input()
-  member: Member;
-  @Input()
-  password: number;
-  @Input()
-  email:string;
+    @Input()
+     username: string;
 
+     member: Member;
+     members: Member[];
+     id: number;
+     showMember: boolean = false;
+     profile: string;
+     name: string;
+     level:string;
+     playerName: string;
+     role: string;
+     email:string;
 
-
-  username: string | null;
-  id: number;
-  showMember: boolean = false;
-  profile: string;
-  name: string;
-  level:string;
-  playerName: string;
-  role: string;
+     @Input()
+     password:string;
 
   constructor(private usersService: UsersService,
-    private authService: AuthService,
     private router: Router
      ) {
     this.username = '';
-    this.member = new Member(0, '', 0, '', '', '', '', '');
-    this.id= 0;
-    this.name= '';
-    this.email = '';
-    this.password = 0;
-    this.role = '';
-    this.playerName= '';
-    this.level = '';
-    this.profile = 'View Stats';
+       this.members = [];
+       this.member = new Member(0, '', '', '', '', '', '', '');
+       this.id= 0;
+       this.name= '';
+       this.email = '';
+       this.password = '';
+       this.role = '';
+       this.playerName= '';
+       this.level = '';
+       this.profile = 'View Stats';
   }
 
   ngOnInit(): void {
-    // localStorage.getItem("currentUser");
-    //this.username = JSON.parse(localStorage.getItem("currentUser") as string).username;
-    this.getDetails()
+    this.username = JSON.parse(localStorage.getItem("currentMember") as string).username;
+    this.password = JSON.parse(localStorage.getItem("currentMember") as string).password;
+
   }
 
   ngOnChanges(){
-    this.getDetails()
+      this.getDetails()
   }
 
   getDetails(){
-    this.usersService.loginMember(this.password).subscribe(
-      dataResult => {
-          console.log(dataResult)
-          for(let i=0; i < dataResult.length; i++){
-            console.log('estoy dentro del for')
-            const id: number = dataResult[1].id;
-            const name: string = dataResult[1].name;
-            const playerName: string = dataResult[1].playerName;
-            const email: string = dataResult[1].email;
-            const level: string = dataResult[1].level;
+    this.member = new Member(0, '', '', '', '', '', '', '');
+        this.usersService.login(this.username, this.password).subscribe(
+          dataResult => {
+              console.log(dataResult);
+                const id: number = dataResult.id;
+                const name: string = dataResult.name;
+                const playerName: string = dataResult.playerName;
+                const email: string = dataResult.email;
+                const level: string = dataResult.level;
           }
-          console.log('estoy fuera del for')
-      }
-    )
+        )
   }
 
-  logout(): void {
-    console.log('logging out...');
-    this.authService.logout();
+   logout(): void {
+  //   console.log('logging out...');
+  //   this.authService.logout();
 
-    this.router.navigate(['/login']);
+  //   this.router.navigate(['/login']);
 
-  }
+   }
 
 }

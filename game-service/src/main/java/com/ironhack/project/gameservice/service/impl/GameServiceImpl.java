@@ -16,6 +16,19 @@ public class GameServiceImpl implements GameService {
     @Autowired
     private GameRepository gameRepository;
 
+    public Game findById(Long id){
+        Optional<Game> optionalGame = gameRepository.findById(id);
+        if (!optionalGame.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found");
+        }
+        Game game = new Game();
+        game.setId(optionalGame.get().getId());
+        game.setDate(optionalGame.get().getDate());
+        game.setAddress(optionalGame.get().getAddress());
+        game.setUser(optionalGame.get().getUser());
+        return game;
+    }
+
     @Override
     public List<Game> FindAll() {
         List<Game> gameList = gameRepository.findAll();

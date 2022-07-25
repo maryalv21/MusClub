@@ -3,12 +3,12 @@ import { User } from "./User.model";
 export class Game {
 
   constructor(private _id: number, private _date: string,
-    private _address: string, private _user: User){}
+    private _address: string, private _user: User[]){}
 
-  public get user(): User {
+  public get user(): User[] {
     return this._user;
   }
-  public set user(value: User) {
+  public set user(value: User[]) {
     this._user = value;
   }
   public get address(): string {

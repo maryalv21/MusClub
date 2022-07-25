@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MemberControllerImpl implements MemberController {
@@ -30,13 +31,19 @@ public class MemberControllerImpl implements MemberController {
         return memberList;
     }
 
-    @GetMapping("/members/{id}")
+/*    @GetMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
     public MemberGetDTO getById(@PathVariable @Validated Long id) {
         MemberGetDTO memberGetDTO = memberService.getById(id);
         return memberGetDTO;
-    }
+    }*/
 
+    @GetMapping("/members/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public Member login(@PathVariable String username) {
+        Member member = memberService.login(username);
+        return member;
+    }
 
     @PostMapping("/members")
     @ResponseStatus(HttpStatus.CREATED)

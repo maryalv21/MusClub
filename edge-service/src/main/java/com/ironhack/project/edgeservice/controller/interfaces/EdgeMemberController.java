@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface EdgeMemberController {
     List<Member> findAll();
-    MemberGetDTO getById(Long id);
+    //MemberGetDTO getById(Long id);
+    Member login(String username);
     Member createMember(MemberPostDTO memberPostDTO);
     MemberDTO updateMember(Long id, MemberDTO memberDTO);
     void deleteMember(Long id);

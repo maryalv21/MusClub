@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
-    @Override
+/*    @Override
     public MemberGetDTO getById(Long id) {
         Optional<Member> optionalMember = memberRepository.findById(id);
         if (!optionalMember.isPresent()) {
@@ -32,13 +32,28 @@ public class MemberServiceImpl implements MemberService {
         memberGetDTO.setEmail(optionalMember.get().getEmail());
         memberGetDTO.setLevel(optionalMember.get().getLevel());
         return memberGetDTO;
-    }
-
+    }*/
 
     @Override
     public List<Member> findAll() {
     List<Member> memberList = memberRepository.findAll();
         return memberList;
+    }
+
+    public Member login(String username){
+        Optional<Member> optionalMember = memberRepository.findByUsername(username);
+        if (!optionalMember.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found");
+        }
+        Member member  = new Member();
+        member.setId(optionalMember.get().getId());
+        member.setUsername(optionalMember.get().getUsername());
+        member.setRoles(optionalMember.get().getRoles());
+        member.setName(optionalMember.get().getName());
+        member.setEmail(optionalMember.get().getEmail());
+        member.setEmail(optionalMember.get().getEmail());
+        member.setPassword(optionalMember.get().getPassword());
+        return member;
     }
 
     @Override

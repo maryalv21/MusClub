@@ -1,11 +1,11 @@
-<div class="container" (ngSubmit)="getDetails()">
-  <h1>Welcome {{username}}</h1>
+<!-- <div class="container" (ngSubmit)="getDetails()"> -->
+  <div class="container">
+  <h1>Welcome {{ username }}</h1>
   <button class = "logout" (click)="logout()">Logout</button>
 </div>
 <div class="profile">
-  <div class="member">
-    <div class="data">
-      <img class="avatar" src="../../../assets/images/img_avatar5.png" class="avatar" alt="Avatar">
+  <div class="member" >
+    <div class="data" *ngFor="let member of members" >
       <p>NAME: {{ name | titlecase}}</p>
       <p>PLAYERNAME: {{ playerName }}</p>
       <p>EMAIL: {{ email }}</p>

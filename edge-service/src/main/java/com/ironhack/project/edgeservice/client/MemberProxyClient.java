@@ -9,17 +9,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @FeignClient("member-service")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public interface MemberProxyClient {
 
     @GetMapping("/members")
-    public List<Member> findAll();
+    List<Member> findAll();
 
-    @GetMapping("/members/{id}")
+/*    @GetMapping("/members/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MemberGetDTO getById(@PathVariable Long id);
+    MemberGetDTO getById(@PathVariable Long id);*/
+
+    @GetMapping("/members/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    Member login(@PathVariable String username);
 
     @PostMapping("/members")
     Member createMember(@RequestBody MemberPostDTO memberPostDTO);

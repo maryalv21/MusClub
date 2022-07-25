@@ -10,6 +10,8 @@ public interface GameController {
 
     List<Game> FindAll();
 
+    Game findById(Long id);
+
     Game createGame(Game game);
 
     Game updateGame(Long id, Game game);

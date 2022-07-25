@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NewGameComponent } from './components/new-game/new-game.component';
 import { LoginMemberComponent } from './components/login-member/login-member.component';
+import { BoardDetailsComponent } from './components/board-details/board-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoginMemberComponent } from './components/login-member/login-member.com
     RegisterComponent,
     ProfileComponent,
     NewGameComponent,
-    LoginMemberComponent
+    LoginMemberComponent,
+    BoardDetailsComponent
   ],
   imports: [
     BrowserModule,

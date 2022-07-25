@@ -7,6 +7,7 @@ import com.ironhack.project.edgeservice.controller.dto.MemberPostDTO;
 import com.ironhack.project.edgeservice.models.Member;
 import com.ironhack.project.edgeservice.service.interfaces.EdgeMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,12 +19,19 @@ public class EdgeMemberServiceImpl implements EdgeMemberService {
     @Autowired
     private MemberProxyClient memberProxyClient;
 
-    @Override
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+/*    @Override
     public MemberGetDTO getById(Long id) {
 
         return memberProxyClient.getById(id);
-    }
+    }*/
 
+    @Override
+    public Member login(String username) {
+        return memberProxyClient.login(username);
+    }
 
 
     @Override

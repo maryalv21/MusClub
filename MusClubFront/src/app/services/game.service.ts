@@ -15,4 +15,12 @@ export class GameService {
   createGame(game: Game): Observable<any> {
     return this.http.post(`${this.BASE_URL}`, game);
   }
+
+  findGame(game: Game): Observable<any> {
+    return this.http.get(`${this.BASE_URL}`);
+  }
+
+  findGameId(id:number): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/${id}`);
+  }
 }
