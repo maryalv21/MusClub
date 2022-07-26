@@ -65,6 +65,7 @@ export class NewGameComponent implements OnInit {
     const game: Game = this.registerForm.value;
     this.gameService.createGame(game).subscribe( data => {
       console.log(game);
+      alert('game created');
       const date = this.dateInput;
       const address = this.addressInput;
       const avatar = this.avatarInput;

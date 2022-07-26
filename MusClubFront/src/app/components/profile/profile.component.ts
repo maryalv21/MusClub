@@ -11,7 +11,6 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProfileComponent implements OnInit {
 
-    @Input()
      username: string;
 
      member: Member;
@@ -46,34 +45,34 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = JSON.parse(localStorage.getItem("currentMember") as string).username;
-    this.password = JSON.parse(localStorage.getItem("currentMember") as string).password;
 
+    //this.getDetails()
   }
 
   ngOnChanges(){
-      this.getDetails()
+      //this.getDetails()
   }
 
-  getDetails(){
-    this.member = new Member(0, '', '', '', '', '', '', '');
-        this.usersService.login(this.username, this.password).subscribe(
-          dataResult => {
-              console.log(dataResult);
-                const id: number = dataResult.id;
-                const name: string = dataResult.name;
-                const playerName: string = dataResult.playerName;
-                const email: string = dataResult.email;
-                const level: string = dataResult.level;
-          }
-        )
-  }
+  // getDetails(){
+  //   this.member = new Member(0, '', '', '', '', '', '', '');
+  //       this.usersService.login(this.username, this.password).subscribe(
+  //         dataResult => {
+  //             console.log(dataResult);
+  //               const id: number = dataResult.id;
+  //               const name: string = dataResult.name;
+  //               const playerName: string = dataResult.playerName;
+  //               const email: string = dataResult.email;
+  //               const level: string = dataResult.level;
+  //         }
+  //       )
+  // }
 
-   logout(): void {
-  //   console.log('logging out...');
-  //   this.authService.logout();
+  //  logout(): void {
+  //    console.log('logging out...');
+  //    this.authService.logout();
 
-  //   this.router.navigate(['/login']);
+  //    this.router.navigate(['/login']);
 
-   }
+  //  }
 
 }

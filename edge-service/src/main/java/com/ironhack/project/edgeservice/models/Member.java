@@ -1,6 +1,7 @@
 package com.ironhack.project.edgeservice.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
@@ -18,9 +19,9 @@ public class Member  extends User{
     public Member() {
     }
 
-    public Member(Long id, String username, String password, Set<Role> roles, String name,
+    public Member(Long id, String username, @Min(5) String password, Game game, Set<Role> roles, String name,
                   String playerName, String email, String level) {
-        super(id, username, password, roles);
+        super(id, username, password, game, roles);
         this.name = name;
         this.playerName = playerName;
         this.email = email;

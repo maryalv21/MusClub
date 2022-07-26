@@ -18,7 +18,6 @@ public class Game {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="user_id")
-    @JsonIgnore
     private User user;
 
     public Game() {

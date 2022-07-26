@@ -26,8 +26,11 @@ public class User implements UserDetails {
     private Long id;
 
     private String username;
-    @Min(5)
+
     private String password;
+
+    @OneToOne(mappedBy = "user")
+    private Game game;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;

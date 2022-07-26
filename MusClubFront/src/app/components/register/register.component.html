@@ -1,5 +1,5 @@
 <div class="register">
-  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+  <form (ngSubmit)="register()" [formGroup]="registerForm">
     <div>
         <input class="input" type="text" matInput placeholder="Name..." formControlName="name">
         <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">

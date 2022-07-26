@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
         User user = toModel(userDTO);
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
-        // Set default profile
         user.setRoles(Set.of(new Role(null, "USER", user)));
         User savedUser = userRepository.save(user);
         savedUser.setPassword(null);

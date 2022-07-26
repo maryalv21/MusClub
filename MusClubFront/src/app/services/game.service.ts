@@ -9,18 +9,26 @@ import { Game } from '../Models/Game.model';
 export class GameService {
 
   private readonly BASE_URL= 'http://localhost:8080/games';
+  private game:Game;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.game= new Game(0, '','', []);
+   }
 
   createGame(game: Game): Observable<any> {
     return this.http.post(`${this.BASE_URL}`, game);
   }
 
-  findGame(game: Game): Observable<any> {
-    return this.http.get(`${this.BASE_URL}`);
+  findAll(): Observable<Game[]> {
+    return this.http.get<Game[]>(`${this.BASE_URL}`);
   }
 
-  findGameId(id:number): Observable<any> {
-    return this.http.get(`${this.BASE_URL}/${id}`);
+  findById(id:number): Observable<Game> {
+    return this.http.get<Game>(`${this.BASE_URL}/${id}`);
+  }
+
+  deleteGame(id:number): Observable<Game[]> {
+    this.http.delete(`${this.BASE_URL}/${id}`);
+    return this.findAll();
   }
 }

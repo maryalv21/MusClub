@@ -16,7 +16,6 @@ public class User {
 
     private String username;
 
-    @Min(5)
     private String password;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;

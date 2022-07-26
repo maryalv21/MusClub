@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from 'src/app/Models/Game.model';
 import { User } from 'src/app/Models/User.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,8 +12,10 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class BoardComponent implements OnInit {
 
+
   game: Game;
-  games: Game[];
+  gameList: Game[];
+  selectedGame!:number;
   user: User;
 
   date: string;
@@ -25,9 +27,10 @@ export class BoardComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private gameService: GameService,
   ) {
-    this.games = [];
+    this.gameList = [];
     this.user = new User(0, '', '', []);
     this.game = new Game(0, '', '', []);
     this.date = '';
@@ -35,17 +38,30 @@ export class BoardComponent implements OnInit {
     this.playerName = '';
     this.avatar = '';
     this.level = '';
+    this.gameService.findAll().subscribe((games:Game[]) =>
+    {
+      this.gameList = games;
+    });
+
+
+
 
    }
 
   ngOnInit(): void {
+     console.log(this.activatedRoute.snapshot.params);
+     const gameId: number = this.activatedRoute.snapshot.params['id'];
+  }
 
-    this.gameService.findGame(this.game).subscribe(
-      (data) => {
-        console.log(data);
-        this.games = data;
-    }
-    );
+  deleteGame(index: number): void {
+      const gameId: number= this.gameList[index].id;
+      this.gameList.splice(index, 1);
+      console.log('Entrando borrar' + index);
+      this.gameService.deleteGame(gameId).subscribe();
+  }
+
+  showDetails(index: number): void {
+    this.selectedGame = index;
   }
 
   logout(): void {

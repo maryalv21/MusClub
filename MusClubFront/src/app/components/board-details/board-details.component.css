@@ -25,6 +25,7 @@ a {
 }
 
 .custom-form {
+  font-family: 'Nunito', sans-serif;
   display: block;
   min-width: 50px;
   max-width: 50%;
@@ -70,3 +71,81 @@ a {
   color: red;
   font-size: 0.75rem;
 }
+
+.players{
+  display:flex;
+  margin-top: 30px;
+  margin-left: 40%;
+}
+
+.input {
+  font-family: 'Nunito', sans-serif;
+  display: block;
+  margin: 2rem 0;
+  justify-content: right;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
+      rgba(0, 0, 0, 0.1);
+  border: 0 none;
+  background: #ebf5fc;
+}
+
+
+.router {
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18 px;
+  color: rgb(21, 65, 21);
+}
+
+.maryalv-matchCard .avatar {
+  width: 2px;
+  margin: 2px auto 0px;
+  display: block;
+  border-radius: 50%;
+
+}
+
+.data {
+  display: flex;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: none;
+  box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
+      rgba(0, 0, 0, 0.1);
+  border: 0 none;
+  background: #ebf5fc;
+  font-family: 'Nunito', sans-serif;
+  font-size: 10 px;
+}
+
+.buttons {
+  display: flex;
+  padding-left: 10px;
+  margin-left: 45%;
+}
+
+.button {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: none;
+  font-size: 10px;
+  color: rgb(21, 65, 21);
+  font-weight: bold;
+  background-color: #bcd8c1;
+  width: 20%;
+  height: 20%;
+  display: block;
+  padding: 1rem 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+  cursor: pointer;
+}
+
+.button-right {
+  align: flex-end;
+}
+
+

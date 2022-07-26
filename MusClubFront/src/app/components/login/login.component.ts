@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
     const player: Player = this.loginFormPlayer.value;
     this.userService.loginPlayer(player).subscribe( data => {
         console.log(data);
+        console.log('Login successfull');
+        alert('Login successfull')
     });
       this.router.navigate(['board'])
   }

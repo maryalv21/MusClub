@@ -19,7 +19,7 @@ public class GameControllerImpl implements GameController {
     @Autowired
     private GameService gameService;
 
-    @Autowired
+    @Autowiredls
     private GameRepository gameRepository;
 
     @GetMapping("/games/{id}")

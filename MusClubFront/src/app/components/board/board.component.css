@@ -75,7 +75,6 @@
   width: 30%;
   float: left;
 
-
 }
 
 .maryalv-matchCard .cell-3 {
@@ -125,12 +124,13 @@ hr {
 }
 
 .data {
+  font-family: 'Nunito', sans-serif;
   display: flex;
   border-radius: 0.5rem;
   padding: 1rem;
   border: none;
-  box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
-      rgba(0, 0, 0, 0.1);
+  box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8),
+   inset 5px 5px 10px rgba(0, 0, 0, 0.1);
   border: 0 none;
   background: #ebf5fc;
   font-family: 'Nunito', sans-serif;
@@ -177,10 +177,11 @@ hr {
 }
 
 .router {
-  text-decoration: none;
+  text-decoration: darkgreen;
   font-family: 'Nunito', sans-serif;
   font-size: 18 px;
   color: rgb(21, 65, 21);
+  margin-left: 70%;
 }
 
 .maryalv-matchCard .avatar {
@@ -188,4 +189,13 @@ hr {
   margin: 2px auto 0px;
   display: block;
   border-radius: 50%;
+}
+.cell{
+  padding-left: 20px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: rgb(21, 65, 21);
+  font-size: 30px;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
 }

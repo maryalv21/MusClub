@@ -5,7 +5,6 @@ import com.ironhack.project.edgeservice.client.MemberProxyClient;
 import com.ironhack.project.edgeservice.client.PlayerProxyClient;
 import com.ironhack.project.edgeservice.models.User;
 import com.ironhack.project.edgeservice.repository.UserRepository;
-import com.ironhack.project.edgeservice.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

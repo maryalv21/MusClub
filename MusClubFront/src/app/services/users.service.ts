@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Member } from 'src/app/Models/Member.model';
 import { Player } from 'src/app/Models/Player.model';
+import { User } from 'src/app/Models/User.model';
 
 
 @Injectable({
@@ -33,9 +34,9 @@ export class UsersService {
     localStorage.removeItem('currentMember');
   }
 
-  register(member: Member): Observable<any> {
-    return this.http.post(`${this.BASE_URL}`, member);
-  }
+  // registerMember(member: Member): Observable<any> {
+  //   return this.http.post(`${this.BASE_URL}`, member);
+  // }
 
   deleteMember(id: number): Observable<any> {
     return this.http.delete(`${this.BASE_URL}/${id}`)

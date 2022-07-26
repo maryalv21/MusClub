@@ -58,14 +58,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
-    console.log('Form submitted');
-    const member: Member = this.registerForm.value;
-    this.userService.register(member).subscribe( data => {
-      console.log(member);
-    });
-    this.router.navigate(['profile'])
-  }
+  // onSubmit(): void {
+  //   console.log('Form submitted');
+  //   const member: Member = this.registerForm.value;
+  //   this.userService.register(member).subscribe( data => {
+  //     console.log(member);
+  //   });
+  //   this.router.navigate(['profile'])
+  // }
 
 
   register() {
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
         console.log(user);
 
         // Redirect to home page
-        this.router.navigate(['/login']);
+        this.router.navigate(['/profile']);
       },
       (error) => {
         alert('Register failed');

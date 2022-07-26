@@ -14,8 +14,6 @@ import { CustomValidator } from 'src/app/utils/CustomValidator';
   styleUrls: ['./login-member.component.css']
 })
 export class LoginMemberComponent implements OnInit {
-  member: Member;
-  members: Member[];
   loginFormMember: FormGroup;
   usernameInput: FormControl;
   passwordInput: FormControl;
@@ -24,8 +22,6 @@ export class LoginMemberComponent implements OnInit {
     private authService: AuthService,
     private router:Router,
     private activatedRoute: ActivatedRoute) {
-    this.member = new Member(0, '', '', '', '', '', '', '');
-    this.members = [];
     this.usernameInput = new FormControl('', [Validators.required]);
     this.passwordInput = new FormControl('', [Validators.required, CustomValidator.passwordLength(5, 10)]);
     this.loginFormMember = new FormGroup({
@@ -42,9 +38,12 @@ export class LoginMemberComponent implements OnInit {
   login() {
     this.authService.login(this.loginFormMember.value.username,
       this.loginFormMember.value.password).subscribe(
-      (data) => {
+      (user:User) => {
         console.log('Login successful');
-        console.log(data.username);
+        console.log(user);
+        alert('login success')
+        localStorage.removeItem('currentUser');
+        localStorage.setItem('currentUser', JSON.stringify(user));
         this.router.navigate(['/profile']);
       }
     );
