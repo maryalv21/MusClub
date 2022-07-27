@@ -125,7 +125,7 @@ hr {
 
 .data {
   font-family: 'Nunito', sans-serif;
-  display: flex;
+  display:  flex;
   border-radius: 0.5rem;
   padding: 1rem;
   border: none;
@@ -198,4 +198,15 @@ hr {
   font-size: 30px;
   font-weight: 700;
   font-family: 'Nunito', sans-serif;
+}
+
+.icons{
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  margin-left: 70%;
+}
+
+.gameList{
+  margin-left: 20px;
 }

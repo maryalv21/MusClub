@@ -12,12 +12,18 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class BoardComponent implements OnInit {
 
+  @Input()
+  gameId:number;
 
   game: Game;
   gameList: Game[];
   selectedGame!:number;
   user: User;
-
+  //deleteGameEvent: EventEmitter<number> = new EventEmitter<number>();
+  deleteGameEvent(gameId:number){
+    this.gameId = gameId;
+  }
+  showGame:number;
   date: string;
   address: string;
   playerName: string;
@@ -30,7 +36,9 @@ export class BoardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private gameService: GameService,
   ) {
+    this.gameId = 0;
     this.gameList = [];
+    this.showGame= -1;
     this.user = new User(0, '', '', []);
     this.game = new Game(0, '', '', []);
     this.date = '';
@@ -42,23 +50,28 @@ export class BoardComponent implements OnInit {
     {
       this.gameList = games;
     });
-
-
-
-
    }
 
   ngOnInit(): void {
-     console.log(this.activatedRoute.snapshot.params);
-     const gameId: number = this.activatedRoute.snapshot.params['id'];
+
+     //const gameId: number = this.activatedRoute.snapshot.params['id'];
+     console.log(this.activatedRoute.snapshot.params['id']);
+    //console.log('esto es gameId' + gameId)
+     this.gameService.findAll().subscribe((games:Game[]) =>
+     {
+       this.gameList = games;
+     });
   }
 
-  deleteGame(index: number): void {
-      const gameId: number= this.gameList[index].id;
-      this.gameList.splice(index, 1);
-      console.log('Entrando borrar' + index);
-      this.gameService.deleteGame(gameId).subscribe();
-  }
+    deleteGame(gameId: number, i: number): void {
+      console.log(gameId)
+        //const gameId: number= this.gameList[index].id;
+        console.log('Entrando borrar'  + gameId);
+        this.gameService.deleteGame(gameId).subscribe(() => {
+          console.log('indice de la lista' + i)
+          this.gameList.splice(i,1);
+        });
+   }
 
   showDetails(index: number): void {
     this.selectedGame = index;
@@ -68,6 +81,10 @@ export class BoardComponent implements OnInit {
     console.log('logging out...');
     this.authService.logout();
     this.router.navigate(['/login']);
+
+  }
+
+  updateGame(gameId: number, game: Game): void{
 
   }
 

@@ -44,28 +44,28 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.username = JSON.parse(localStorage.getItem("currentMember") as string).username;
-
-    //this.getDetails()
+    this.username = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    this.password = JSON.parse(localStorage.getItem("currentUser") as string).password;
+    this.getDetails()
   }
 
   ngOnChanges(){
       //this.getDetails()
   }
 
-  // getDetails(){
-  //   this.member = new Member(0, '', '', '', '', '', '', '');
-  //       this.usersService.login(this.username, this.password).subscribe(
-  //         dataResult => {
-  //             console.log(dataResult);
-  //               const id: number = dataResult.id;
-  //               const name: string = dataResult.name;
-  //               const playerName: string = dataResult.playerName;
-  //               const email: string = dataResult.email;
-  //               const level: string = dataResult.level;
-  //         }
-  //       )
-  // }
+   getDetails(){
+     this.member = new Member(0, '', '', '', '', '', '', '');
+         this.usersService.login().subscribe(
+           dataResult => {
+               console.log(dataResult);
+                 const id: number = dataResult.id;
+                 const name: string = dataResult.name;
+                 const playerName: string = dataResult.playerName;
+                 const email: string = dataResult.email;
+                 const level: string = dataResult.level;
+           }
+         )
+   }
 
   //  logout(): void {
   //    console.log('logging out...');

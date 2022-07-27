@@ -4,6 +4,7 @@ import com.ironhack.project.edgeservice.client.GameProxyClient;
 import com.ironhack.project.edgeservice.models.Game;
 import com.ironhack.project.edgeservice.repository.GameRepository;
 import com.ironhack.project.edgeservice.service.interfaces.EdgeGameService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

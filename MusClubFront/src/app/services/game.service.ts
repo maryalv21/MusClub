@@ -15,20 +15,36 @@ export class GameService {
     this.game= new Game(0, '','', []);
    }
 
-  createGame(game: Game): Observable<any> {
-    return this.http.post(`${this.BASE_URL}`, game);
-  }
-
   findAll(): Observable<Game[]> {
+    const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
     return this.http.get<Game[]>(`${this.BASE_URL}`);
   }
 
   findById(id:number): Observable<Game> {
+    const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
     return this.http.get<Game>(`${this.BASE_URL}/${id}`);
   }
 
+  createGame(game: Game): Observable<any> {
+    const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
+    return this.http.post(`${this.BASE_URL}`, game);
+  }
+
+  updateGame(id:number, game:Game): Observable<any>  {
+  const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
+  const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
+    return this.http.put<Game>(`${this.BASE_URL}/${id}`, game);
+  }
+
   deleteGame(id:number): Observable<Game[]> {
-    this.http.delete(`${this.BASE_URL}/${id}`);
-    return this.findAll();
+  const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
+  const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
+    console.log('pasa por el servidor' + id)
+    return this.http.delete<Game[]>(`${this.BASE_URL}/${id}`);
+    // console.log(this.BASE_URL + id);
+   // return this.findAll();
   }
 }

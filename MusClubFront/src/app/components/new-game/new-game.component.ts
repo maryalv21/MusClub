@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from 'src/app/Models/Game.model';
@@ -14,6 +14,8 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class NewGameComponent implements OnInit {
 
+  @Input()
+  username:String;
   member: Member;
   user: User
   game : Game;
@@ -22,6 +24,7 @@ export class NewGameComponent implements OnInit {
   addresses: string[];
   avatars:string[];
   registerForm: FormGroup;
+  usernameInput: FormControl;
   addressInput: FormControl;
   levelInput: FormControl;
   avatarInput: FormControl;
@@ -41,6 +44,8 @@ export class NewGameComponent implements OnInit {
     this.levels = ['beginner'];
     this.avatars = [''];
     this.addresses = [''];
+    this.username = '';
+    this.usernameInput = new FormControl('', [Validators.required]);
     this.dateInput = new FormControl('', [Validators.required]);
     this.playerNameInput = new FormControl('', [Validators.required]);
     this.avatarInput = new FormControl('', Validators.required);
@@ -53,7 +58,8 @@ export class NewGameComponent implements OnInit {
       playerName: this.playerNameInput,
       address: this.addressInput,
       avatar: this.avatarInput,
-      level: this.levelInput
+      level: this.levelInput,
+      username: this.usernameInput
     },);
   }
 
@@ -71,9 +77,11 @@ export class NewGameComponent implements OnInit {
       const avatar = this.avatarInput;
       const playerName = this.playerNameInput;
       const level = this.levelInput;
+      this.router.navigate(['board']);},
+      error => {
+        console.log(error);
+        alert('error creating game')
     });
-    this.router.navigate(['board']);
   }
-
 }
 

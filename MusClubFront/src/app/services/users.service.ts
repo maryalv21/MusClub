@@ -22,8 +22,10 @@ export class UsersService {
     return token !== null;
   }
 
-  login(username: string, password: string): Observable<Member> {
+  login(): Observable<Member> {
     let headers = new HttpHeaders();
+    const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
     headers = headers.append('Authorization', 'Basic ' + btoa(`${username}:${password}`));
 
     return this.http.get<Member>(`${this.BASE_URL}/`, { headers: headers });

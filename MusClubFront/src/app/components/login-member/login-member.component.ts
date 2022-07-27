@@ -43,6 +43,7 @@ export class LoginMemberComponent implements OnInit {
         console.log(user);
         alert('login success')
         localStorage.removeItem('currentUser');
+        user.password = this.loginFormMember.value.password;
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.router.navigate(['/profile']);
       }

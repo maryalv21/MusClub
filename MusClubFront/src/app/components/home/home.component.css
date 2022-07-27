@@ -9,7 +9,7 @@
 
 a {
     color: #fff;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .h1{
@@ -21,8 +21,8 @@ a {
 body {
     font-family: 'Nunito', sans-serif;
     height: 100vh;
-    background: cornsilk;
-    font-family: 'Poppins', sans-sherif;
+    background: #bcd8c1;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,3 +201,4 @@ body {
 .select-sim:hover .options .option input:checked+label {
     background: #fffff0;
 }
+
