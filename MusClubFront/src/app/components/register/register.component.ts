@@ -18,12 +18,10 @@ export class RegisterComponent implements OnInit {
   levels: string[];
   registerForm: FormGroup;
   nameInput: FormControl;
-  playernameInput: FormControl;
   emailInput: FormControl;
   passwordInput: FormControl;
   passwordConfirmationInput: FormControl;
   roleInput: FormControl;
-  levelInput: FormControl;
   usernameInput: FormControl;
 
   constructor(public userService: UsersService,
@@ -34,38 +32,25 @@ export class RegisterComponent implements OnInit {
     this.roles = ['MEMBER'];
     this.levels = ['beginner'];
     this.nameInput = new FormControl('', [Validators.required, CustomValidator.noDigits]);
-    this.playernameInput = new FormControl('', [Validators.required, CustomValidator.noDigits]);
     this.emailInput = new FormControl('', [Validators.required, Validators.email]);
     this.passwordInput = new FormControl('', [Validators.required, CustomValidator.passwordLength(5, 10)]);
     this.passwordConfirmationInput = new FormControl('');
     this.roleInput = new FormControl('', Validators.required);
-    this.levelInput = new FormControl('', Validators.required);
     this.usernameInput = new FormControl('', Validators.required);
 
 
     this.registerForm = new FormGroup({
       name: this.nameInput,
-      playerName: this.playernameInput,
       email: this.emailInput,
       password: this.passwordInput,
       passwordConfirmation: this.passwordConfirmationInput,
       role: this.roleInput,
-      level: this.levelInput,
       username: this.usernameInput
     }, CustomValidator.passwordMatch);
   }
 
   ngOnInit(): void {
   }
-
-  // onSubmit(): void {
-  //   console.log('Form submitted');
-  //   const member: Member = this.registerForm.value;
-  //   this.userService.register(member).subscribe( data => {
-  //     console.log(member);
-  //   });
-  //   this.router.navigate(['profile'])
-  // }
 
 
   register() {
@@ -75,7 +60,7 @@ export class RegisterComponent implements OnInit {
         console.log(user);
 
         // Redirect to home page
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/login-member']);
       },
       (error) => {
         alert('Register failed');

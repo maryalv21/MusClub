@@ -1,6 +1,7 @@
 package com.ironhack.project.edgeservice.controller.impl;
 
 import com.ironhack.project.edgeservice.client.GameProxyClient;
+import com.ironhack.project.edgeservice.controller.dto.GameDTO;
 import com.ironhack.project.edgeservice.controller.interfaces.EdgeGameController;
 import com.ironhack.project.edgeservice.models.Game;
 import com.ironhack.project.edgeservice.service.interfaces.EdgeGameService;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 public class EdgeGameControllerImpl implements EdgeGameController {
 
     @Autowired
@@ -40,6 +41,12 @@ public class EdgeGameControllerImpl implements EdgeGameController {
         return edgeGameService.FindAll();
     }
 
+    @GetMapping("/usergame/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<GameDTO> findGameByUserId(@PathVariable (name="id") Long id){
+        return edgeGameService.findGameByUserId(id);
+    }
+
     @PostMapping("/games")
     @ResponseStatus(HttpStatus.CREATED)
     public Game createGame(@RequestBody Game game) {
@@ -48,8 +55,8 @@ public class EdgeGameControllerImpl implements EdgeGameController {
 
     @PutMapping("/games/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Game updateGame(@PathVariable Long id,  @RequestBody Game game) {
-        return edgeGameService.updateGame(id, game);
+    public GameDTO updateGame(@PathVariable Long id,  @RequestBody GameDTO gameDTO) {
+        return edgeGameService.updateGame(id, gameDTO);
     }
 
     @DeleteMapping("/games/{id}")

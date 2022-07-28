@@ -1,6 +1,7 @@
-<div id="games" class="register">
-      <form (ngSubmit)="submitGame()" [formGroup]= "registerForm">
-      <select class="input" name="select" formControlName="address">
+<div id="games" class="login">
+      <form class="custom-form" (ngSubmit)="submitGame()" [formGroup]= "registerForm">
+        <h1>New Game</h1>
+        <select class="input" name="select" formControlName="address">
           <option value="" invalid>Please select address</option>
           <option *ngFor="let address of addresses">{{ address | titlecase }}</option>
           <option value="Bar La Alegria">Bar La Alegria</option>
@@ -14,20 +15,19 @@
           <p class="error-msg" *ngIf="dateInput.invalid && dateInput.touched">
             please select a date
           </p>
-      <select class="input" name="avatar" formControlName="avatar">
+      <!-- <select class="input" name="avatar" formControlName="avatar">
         <option value="" invalid>Please choose your avatar</option>
         <option *ngFor="let avatar of avatars">{{ avatar | titlecase }}></option>
         <option value="" img src="../../../assets/images/img_avatar3.png">Avatar1</option>
         <option value="" img src="../../../assets/images/img_avatar5.png">Avatar2</option>
-      </select> 
-
-      <input class="input" type="text" placeholder="username" formControlName="username">
+      </select> -->
+      <!-- <input class="input" type="text" placeholder="username" formControlName="username">
       <p class="error-msg" *ngIf="usernameInput.invalid && usernameInput.touched">
         please select username Player1
-      </p>
-      <input class="input" type="text" placeholder="PlayerName2" formControlName="playerName">
-      <input class="input" type="text" placeholder="PlayerName3" formControlName="playerName">
-      <input class="input" type="text" placeholder="PlayerName4" formControlName="playerName">
+      </p> -->
+      <input class="input" type="text" placeholder="PlayerName2" formControlName="playerName2">
+      <input class="input" type="text" placeholder="PlayerName3" formControlName="playerName3">
+      <input class="input" type="text" placeholder="PlayerName4" formControlName="playerName4">
       <select class="input" formControlName="level">
         <option value="" invalid>Please select level</option>
         <option *ngFor="let level of levels" [value]="level">{{ level | titlecase }}</option>

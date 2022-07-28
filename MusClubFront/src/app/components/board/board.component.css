@@ -210,3 +210,17 @@ hr {
 .gameList{
   margin-left: 20px;
 }
+
+.title {
+  display: flex;
+  font-family: 'Nunito', sans-serif;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: none;
+  box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8),
+   inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+  border: 0 none;
+  background: #ebf5fc;
+  font-size: 5 px;
+}
+

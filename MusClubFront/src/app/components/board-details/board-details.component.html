@@ -2,30 +2,30 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16l-6-6 6-6"/><path d="M20 21v-7a4 4 0 0 0-4-4H5"/></svg>
 </p>
 <div class="input">
-  {{ currentGame.date }} | {{ currentGame.address }}
+  {{ currentGame.date }} | {{ currentGame.address }} | {{ currentGame.id }}
   <div class="players">
     <div class="avatar">
       <img src="../../../assets/images/bb8.png">
         <div class="w3-container">
-          <h4><b>{{user.username}}</b></h4>
+          <h4><b>{{ username }}</b></h4>
         </div>
     </div>
     <div class="avatar">
-    <img src="../../../assets/images/c3po.png">
+    <a class="router" [routerLink]="['/profile']"><img src="../../../assets/images/c3po.png"></a>
       <div class="w3-container">
-        <h4><b>{{user.username}}</b></h4>
+        <h4><b>{{ playerName2 }}</b></h4>
       </div>
     </div>
     <div class="avatar">
     <img src="../../../assets/images/trooper.png">
       <div class="w3-container">
-        <h4><b>{{user.username}}</b></h4>
+        <h4><b>{{ playerName3 }}</b></h4>
       </div>
     </div>
     <div class="avatar">
     <img src="../../../assets/images/darth_vader.png">
       <div class="w3-container">
-        <h4><b>{{user.username}}</b></h4>
+        <h4><b>{{ playerName4 }}</b></h4>
       </div>
   </div>
 </div>

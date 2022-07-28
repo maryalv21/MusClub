@@ -9,10 +9,11 @@ import { Game } from '../Models/Game.model';
 export class GameService {
 
   private readonly BASE_URL= 'http://localhost:8080/games';
+  private readonly API_URL= 'http://localhost:8080/usergame';
   private game:Game;
 
   constructor(private http: HttpClient) {
-    this.game= new Game(0, '','', []);
+    this.game= new Game(0, '','', [], '', '', '');
    }
 
   findAll(): Observable<Game[]> {
@@ -25,6 +26,12 @@ export class GameService {
     const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
     const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
     return this.http.get<Game>(`${this.BASE_URL}/${id}`);
+  }
+
+  findGameByUserId(id:number): Observable<Game[]> {
+    const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
+    return this.http.get<Game[]>(`${this.API_URL}/${id}`);
   }
 
   createGame(game: Game): Observable<any> {
@@ -42,9 +49,6 @@ export class GameService {
   deleteGame(id:number): Observable<Game[]> {
   const username: string = JSON.parse(localStorage.getItem("currentUser") as string).username;
   const password: string = JSON.parse(localStorage.getItem("currentUser") as string).password;
-    console.log('pasa por el servidor' + id)
     return this.http.delete<Game[]>(`${this.BASE_URL}/${id}`);
-    // console.log(this.BASE_URL + id);
-   // return this.findAll();
   }
 }

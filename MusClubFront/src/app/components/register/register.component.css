@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .register {
   box-sizing: border-box;
 }
@@ -9,18 +12,32 @@ h1 {
   margin: 0;
   padding: 0;
 }
+
+a {
+  font-size: 20px;
+  color: rgb(21, 65, 21);
+}
+
+h4 {
+  font-size: 20px;
+  color: rgb(21, 65, 21);
+}
+
+.login {
+  display: block;
+}
 .custom-form {
   min-width: 200px;
   max-width: 60%;
   margin: 0px auto;
   background: rgba(255, 255, 255, 0.15);
-  padding: 2rem 3rem;
+  padding: 1.5rem 3rem;
   margin: auto;
   border-radius: 2.5rem;
   background-color: #ecf0f3;
   box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
   color: black;
-  margin-top: 5rem;
+  margin-top: 0.5rem;
 }
 .input {
   display: block;

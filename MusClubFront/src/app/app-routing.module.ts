@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NewGameComponent } from './components/new-game/new-game.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UpdateGameComponent } from './components/update-game/update-game.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -17,16 +18,16 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
   },
   {
     path: 'board',
@@ -47,7 +48,11 @@ const routes: Routes = [
   {
     path:'board-details/:id',
     component: BoardDetailsComponent,
-  }
+  },
+  {
+    path: 'update-game/:id',
+    component: UpdateGameComponent,
+  },
 ];
 
 @NgModule({

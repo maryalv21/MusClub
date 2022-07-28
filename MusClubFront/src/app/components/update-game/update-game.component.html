@@ -1,0 +1,25 @@
+<div class= "login">
+
+  <form class="custom-form" (ngSubmit)="updatedGame()" [formGroup]= "registerForm">
+    <div class="form">
+      <h1>Update Game</h1>
+      <select class="input" name="select" formControlName="address">
+          <option value="" invalid>Please select address</option>
+          <option *ngFor="let address of addresses">{{ address | titlecase }}</option>
+          <option value="Bar La Alegria">Bar La Alegria</option>
+          <option value="Bar Remember">Bar Remember</option>
+          <option value="Taberna Tio Paco">Taberna Tio Paco</option>
+      </select>
+      <p class="error-msg" *ngIf="addressInput.invalid && addressInput.touched">
+        please select new address
+      </p>
+      <input class="input" type="text" placeholder="Date" formControlName="date">
+          <p class="error-msg" *ngIf="dateInput.invalid && dateInput.touched">
+            please select new date
+          </p>
+            <button class="button" type="submit">Submit</button>
+            <button class="button" type="reset">Reset</button>
+          </div>
+    </form>
+</div>
+

@@ -1,6 +1,7 @@
 package com.ironhack.project.edgeservice.service.impl;
 
 import com.ironhack.project.edgeservice.client.GameProxyClient;
+import com.ironhack.project.edgeservice.controller.dto.GameDTO;
 import com.ironhack.project.edgeservice.models.Game;
 import com.ironhack.project.edgeservice.repository.GameRepository;
 import com.ironhack.project.edgeservice.service.interfaces.EdgeGameService;
@@ -31,14 +32,19 @@ public class EdgeGameServiceImpl implements EdgeGameService {
         return gameProxyClient.FindAll();
     }
 
+    public List<GameDTO> findGameByUserId(Long id){
+
+    return  gameProxyClient.findGameByUserId(id);
+    }
+
     @Override
     public Game createGame(Game game) {
         return gameProxyClient.createGame(game);
     }
 
     @Override
-    public Game updateGame(Long id, Game game) {
-        return gameProxyClient.updateGame(id, game);
+    public GameDTO updateGame(Long id, GameDTO gameDTO) {
+        return gameProxyClient.updateGame(id, gameDTO);
     }
 
     @Override

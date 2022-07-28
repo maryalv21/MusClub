@@ -67,6 +67,10 @@ export class ProfileComponent implements OnInit {
          )
    }
 
+   goBack(){
+    this.router.navigate(['board'])
+  }
+
   //  logout(): void {
   //    console.log('logging out...');
   //    this.authService.logout();

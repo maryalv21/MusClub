@@ -1,5 +1,6 @@
-<div class="register">
-  <form (ngSubmit)="register()" [formGroup]="registerForm">
+<div class="login">
+  <form class="custom-form" (ngSubmit)="register()" [formGroup]="registerForm">
+    <h1>Register</h1>
     <div>
         <input class="input" type="text" matInput placeholder="Name..." formControlName="name">
         <p class="error-msg" *ngIf="nameInput.invalid && (nameInput.touched || nameInput.dirty)">
@@ -13,12 +14,6 @@
       <input class="input" type="text" matInput placeholder="username..." formControlName="username">
         <p class="error-msg" *ngIf="usernameInput.invalid && (usernameInput.touched || usernameInput.dirty)">
             UserName is <strong>required</strong>
-        </p>
-    </div>
-    <div>
-      <input class="input" type="text" matInput placeholder="Playername..." formControlName="playerName">
-        <p class="error-msg" *ngIf="playernameInput.invalid && (playernameInput.touched || playernameInput.dirty)">
-            PlayerName is <strong>required</strong>
         </p>
     </div>
     <div>
@@ -40,13 +35,6 @@
         </select>
         <p class="error-msg" *ngIf="roleInput.invalid && (roleInput.touched || roleInput.dirty)">Please select a role</p>
     </div>
-    <div>
-      <select class="input" formControlName="level">
-          <option value="" invalid>Please select level</option>
-          <option *ngFor="let level of levels" [value]="level">{{ level | titlecase }}</option>
-      </select>
-      <p class="error-msg" *ngIf="levelInput.invalid && (levelInput.touched || levelInput.dirty)">Please select a level</p>
-  </div>
     <div>
         <button class="button" type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid">Submit</button>
     </div>

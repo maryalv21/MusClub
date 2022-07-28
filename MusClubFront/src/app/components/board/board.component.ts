@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from 'src/app/Models/Game.model';
 import { User } from 'src/app/Models/User.model';
@@ -15,14 +15,36 @@ export class BoardComponent implements OnInit {
   @Input()
   gameId:number;
 
+  @Input()
+  username: string;
+
+  @Input()
+  password:string;
+
+  @Input()
+  playerName2 : string;
+
+  @Input()
+  playerName3 : string;
+
+  @Input()
+  playerName4 : string;
+  @Input()
+  user: User;
+
   game: Game;
   gameList: Game[];
   selectedGame!:number;
-  user: User;
-  //deleteGameEvent: EventEmitter<number> = new EventEmitter<number>();
+  id: number;
+
   deleteGameEvent(gameId:number){
     this.gameId = gameId;
   }
+
+  updateGameEvent(gameId: number){
+    this.gameId = gameId;
+  }
+
   showGame:number;
   date: string;
   address: string;
@@ -36,39 +58,52 @@ export class BoardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private gameService: GameService,
   ) {
+    this.id = 1;
+    this.playerName2 = '';
+    this.playerName3 = '';
+    this.playerName4 = '';
+    this.password = '';
+    this.username = '';
     this.gameId = 0;
     this.gameList = [];
     this.showGame= -1;
     this.user = new User(0, '', '', []);
-    this.game = new Game(0, '', '', []);
+    this.game = new Game(0, '', '', [], '', '', '');
     this.date = '';
     this.address = '';
     this.playerName = '';
     this.avatar = '';
     this.level = '';
-    this.gameService.findAll().subscribe((games:Game[]) =>
-    {
-      this.gameList = games;
-    });
+    // this.gameService.findAll().subscribe((games:Game[]) =>
+    // {
+    //   this.gameList = games;
+    // });
    }
 
   ngOnInit(): void {
+    this.username = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    this.password = JSON.parse(localStorage.getItem("currentUser") as string).password;
+    //this.id = JSON.parse(localStorage.getItem("currentUser") as string).id;
+    console.log(this.user.id);
 
-     //const gameId: number = this.activatedRoute.snapshot.params['id'];
-     console.log(this.activatedRoute.snapshot.params['id']);
-    //console.log('esto es gameId' + gameId)
      this.gameService.findAll().subscribe((games:Game[]) =>
      {
        this.gameList = games;
      });
   }
 
+  findGameByUserId(id: number): void {
+    this.username = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    this.password = JSON.parse(localStorage.getItem("currentUser") as string).password;
+    this.gameService.findGameByUserId(this.id).subscribe((games:Game[]) => {
+      console.log(this.id);
+      this.gameList = games;
+    })
+  }
+
     deleteGame(gameId: number, i: number): void {
-      console.log(gameId)
-        //const gameId: number= this.gameList[index].id;
-        console.log('Entrando borrar'  + gameId);
         this.gameService.deleteGame(gameId).subscribe(() => {
-          console.log('indice de la lista' + i)
+
           this.gameList.splice(i,1);
         });
    }
@@ -84,8 +119,15 @@ export class BoardComponent implements OnInit {
 
   }
 
-  updateGame(gameId: number, game: Game): void{
+  /*updatedGame(gameId:number, game:Game): void{
+    this.gameService.updateGame(this.gameId, this.game).subscribe(
+      response => {
+        const playerName2 = this.playerName2;
+        console.log(response);
+      }
+    )
+  }*/
 
-  }
+
 
 }

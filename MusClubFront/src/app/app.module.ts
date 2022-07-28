@@ -13,6 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NewGameComponent } from './components/new-game/new-game.component';
 import { LoginMemberComponent } from './components/login-member/login-member.component';
 import { BoardDetailsComponent } from './components/board-details/board-details.component';
+import { UpdateGameComponent } from './components/update-game/update-game.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BoardDetailsComponent } from './components/board-details/board-details.
     ProfileComponent,
     NewGameComponent,
     LoginMemberComponent,
-    BoardDetailsComponent
+    BoardDetailsComponent,
+    UpdateGameComponent
   ],
   imports: [
     BrowserModule,

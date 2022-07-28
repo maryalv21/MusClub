@@ -20,7 +20,19 @@ export class BoardDetailsComponent implements OnInit {
   user: User;
 
   @Input()
+  playerName2 : string;
+
+  @Input()
+  playerName3 : string;
+
+  @Input()
+  playerName4 : string;
+
+  @Input()
   username: String;
+
+  @Input()
+  password: number;
 
   @Input()
   index: number;
@@ -32,6 +44,9 @@ export class BoardDetailsComponent implements OnInit {
   deleteGameEvent: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
+  updatedGameEvent: EventEmitter<number> = new EventEmitter<number>();
+
+  @Output()
   gameId = new EventEmitter<number>();
 
   constructor(
@@ -39,27 +54,28 @@ export class BoardDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-
-    this.currentGame = new Game(0,'','',[]);
+    this.playerName2 = '';
+    this.playerName3 = '';
+    this.playerName4 = '';
+    this.currentGame = new Game(0,'','',[], '', '', '');
     this.user = new User(0,'','',[]);
-    this.game = new Game(0,'','',[]);
+    this.game = new Game(0,'','',[], '', '', '');
     this.username = '';
+    this.password = 0;
     this.index = 0;
     this.showGame = 0;
 
   }
 
   ngOnInit(): void {
-     console.log('esto es params' + this.activatedRoute.snapshot.params['id']);
+    this.username = JSON.parse(localStorage.getItem("currentUser") as string).username;
+    this.password = JSON.parse(localStorage.getItem("currentUser") as string).password;
      const gameId: number = this.activatedRoute.snapshot.params['id'];
-
-
-
      this.gameService.findById(gameId).subscribe(
        (game)=>{
          console.log(game);
-       // this.game = game;
         this.currentGame = game;
+        const username = this.username
        }
      );
   }
@@ -76,6 +92,16 @@ export class BoardDetailsComponent implements OnInit {
     );
     console.log('esto es lo que envio al padre' + this.currentGame.id)
     this.deleteGameEvent.emit(this.currentGame.id);
+  }
+
+  updatedGame(): void{
+    this.gameService.updateGame(this.currentGame.id, this.game).subscribe(
+      response => {
+        const playerName2 = this.playerName2;
+        console.log(response);
+        this.updatedGameEvent.emit(this.currentGame.id);
+      }
+    )
   }
 
   goBack(){

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Member } from 'src/app/Models/Member.model';
-import { Player } from 'src/app/Models/Player.model';
 import { User } from 'src/app/Models/User.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -39,13 +37,13 @@ export class LoginMemberComponent implements OnInit {
     this.authService.login(this.loginFormMember.value.username,
       this.loginFormMember.value.password).subscribe(
       (user:User) => {
-        console.log('Login successful');
+        console.log('access granted');
         console.log(user);
         alert('login success')
         localStorage.removeItem('currentUser');
         user.password = this.loginFormMember.value.password;
         localStorage.setItem('currentUser', JSON.stringify(user));
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/board']);
       }
     );
   }

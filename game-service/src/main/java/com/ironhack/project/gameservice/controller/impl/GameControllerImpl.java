@@ -1,5 +1,6 @@
 package com.ironhack.project.gameservice.controller.impl;
 
+import com.ironhack.project.gameservice.controller.dto.GameDTO;
 import com.ironhack.project.gameservice.controller.interfaces.GameController;
 import com.ironhack.project.gameservice.models.Game;
 import com.ironhack.project.gameservice.repository.GameRepository;
@@ -29,6 +30,13 @@ public class GameControllerImpl implements GameController {
         return game ;
     }
 
+    @GetMapping("/usergame/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<GameDTO> findGameByUserId(@PathVariable (name="id") Long id) {
+        List<GameDTO> gameDTOList = gameService.findGameByUserId(id);
+        return gameDTOList;
+    }
+
     //Method to Find All Games for player and Member
     @GetMapping("/games")
     @ResponseStatus(HttpStatus.OK)
@@ -47,9 +55,9 @@ public class GameControllerImpl implements GameController {
     //Method to update Game for Member
     @PutMapping("/games/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Game updateGame(@PathVariable Long id, @RequestBody Game game) {
-        gameService.updateGame(id, game);
-        return game;
+    public GameDTO updateGame(@PathVariable Long id, @RequestBody GameDTO gameDTO) {
+        gameService.updateGame(id, gameDTO);
+        return gameDTO;
     }
 
     //Method to delete Game for Member

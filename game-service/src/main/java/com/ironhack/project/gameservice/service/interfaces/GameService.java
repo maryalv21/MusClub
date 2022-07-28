@@ -1,5 +1,6 @@
 package com.ironhack.project.gameservice.service.interfaces;
 
+import com.ironhack.project.gameservice.controller.dto.GameDTO;
 import com.ironhack.project.gameservice.models.Game;
 
 import java.util.List;
@@ -11,9 +12,11 @@ public interface GameService {
 
     Game findById(Long id);
 
+    List<GameDTO> findGameByUserId(Long id);
+
     Game createGame(Game game);
 
-    Game updateGame(Long id, Game game);
+    GameDTO updateGame(Long id, GameDTO gameDTO);
 
     void deleteGame(Long id);
 }
