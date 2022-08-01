@@ -2,7 +2,6 @@ package com.ironhack.project.edgeservice.service.impl;
 
 import com.ironhack.project.edgeservice.controller.dto.RoleDTO;
 import com.ironhack.project.edgeservice.controller.dto.UserDTO;
-import com.ironhack.project.edgeservice.models.Player;
 import com.ironhack.project.edgeservice.models.Role;
 import com.ironhack.project.edgeservice.models.User;
 import com.ironhack.project.edgeservice.repository.UserRepository;
