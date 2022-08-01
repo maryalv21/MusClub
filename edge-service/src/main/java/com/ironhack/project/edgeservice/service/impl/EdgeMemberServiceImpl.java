@@ -6,6 +6,9 @@ import com.ironhack.project.edgeservice.controller.dto.MemberGetDTO;
 import com.ironhack.project.edgeservice.controller.dto.MemberPostDTO;
 import com.ironhack.project.edgeservice.models.Member;
 import com.ironhack.project.edgeservice.service.interfaces.EdgeMemberService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,8 @@ public class EdgeMemberServiceImpl implements EdgeMemberService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private final Logger logger = LoggerFactory.getLogger(EdgeGameServiceImpl.class);
+
 /*    @Override
     public MemberGetDTO getById(Long id) {
 
@@ -34,26 +39,48 @@ public class EdgeMemberServiceImpl implements EdgeMemberService {
     }
 
 
-    @Override
+    @CircuitBreaker(name= "findAll", fallbackMethod= "findAllFallback")
     public List<Member> findAll() {
         List<Member> memberList = memberProxyClient.findAll();
         return memberList;
     }
 
-    @Override
+    public List<Member> findAllFallback(Exception e) {
+        logger.error(e.getMessage());
+        throw new RuntimeException("Sorry serve not available, try later");
+    }
+
+    @CircuitBreaker(name= "createMember", fallbackMethod= "createMemberFallback")
     public Member createMember(MemberPostDTO memberPostDTO) {
         Member member = memberProxyClient.createMember(memberPostDTO);
         return member;
     }
 
+    public Member createMemberFallback(Exception e){
+        logger.error(e.getMessage());
+        throw new RuntimeException("Sorry serve not available, try later");
+    }
+
+
+    @CircuitBreaker(name= "updateMember", fallbackMethod= "updateMemberFallback")
     public MemberDTO updateMember(Long id, MemberDTO memberDTO) {
         memberProxyClient.updateMember(id, memberDTO);
         return memberDTO;
     }
 
-    @Override
+    public MemberDTO updateMemberFallback(Exception e){
+        logger.error(e.getMessage());
+        throw new RuntimeException("Sorry serve not available, try later");
+    }
+
+    @CircuitBreaker(name= "deleteMember", fallbackMethod= "deleteMemberFallback")
     public void deleteMember(Long id) {
         memberProxyClient.deleteMember(id);
+    }
+
+    public void deleteMemberFallback(Exception e){
+        logger.error(e.getMessage());
+        throw new RuntimeException("Sorry serve not available, try later");
     }
 
 }

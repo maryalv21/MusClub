@@ -52,7 +52,7 @@ https://github.com/maryalv21/MusClub
 
 
 
-* Esta es una versión Beta con lo cual necesitas instalar uel frontend en Visual
+* Esta es una versión Beta con lo cual necesitas instalar un frontend en Visual
 
 Studio y el backend en IntelliJ
 
