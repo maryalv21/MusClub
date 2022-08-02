@@ -34,7 +34,7 @@ public class EdgeGameServiceImpl implements EdgeGameService {
         return gameProxyClient.findById(id);
     }
 
-    public Game findByIdFallback(Exception e){
+    public Game findByIdFallback(Long id, Exception e){
         logger.error(e.getMessage());
 
         Game game = new Game();
@@ -64,7 +64,7 @@ public class EdgeGameServiceImpl implements EdgeGameService {
     return  gameProxyClient.findGameByUserId(id);
     }
 
-    public List<GameDTO> findGameByUserIdFallback(Exception e){
+    public List<GameDTO> findGameByUserIdFallback(Long id, Exception e){
         logger.error(e.getMessage());
         GameDTO game1DTO = new GameDTO();
         User user1 = new User();
@@ -79,7 +79,7 @@ public class EdgeGameServiceImpl implements EdgeGameService {
         return gameProxyClient.createGame(game);
     }
 
-    public Game createGameFallback(Exception e){
+    public Game createGameFallback(Game game, Exception e){
         logger.error(e.getMessage());
         throw new RuntimeException("Sorry serve not available, try later");
     }
@@ -90,7 +90,7 @@ public class EdgeGameServiceImpl implements EdgeGameService {
     }
 
 
-    public GameDTO updateGameFallback(Exception e){
+    public GameDTO updateGameFallback(Long id, GameDTO gameDTO, Exception e){
         logger.error(e.getMessage());
         throw new RuntimeException("Sorry serve not available, try later");
     }
@@ -100,7 +100,7 @@ public class EdgeGameServiceImpl implements EdgeGameService {
     }
 
 
-    public void deleteGameFallback(Exception e){
+    public void deleteGameFallback(Long id, Exception e){
         logger.error(e.getMessage());
         throw new RuntimeException("Sorry serve not available, try later");
     }
