@@ -58,7 +58,6 @@ class MemberControllerImplTest {
         user1 = new User(1L, "MEMBER", "12345", null);
         member1 = new Member(1L, "mafalda", "12345", null, "mafalda",
                 "mafalda","maf@maf.com", "beginner");
-
         memberRepository.save(member1);
 
     }
@@ -122,6 +121,7 @@ class MemberControllerImplTest {
         MvcResult mvcResult = mockMvc.perform(delete("/members/"+member1.getId()))
                 .andExpect(status().isAccepted())
                 .andReturn();
-        assertTrue(memberRepository.count() == 0);
+        assertFalse(memberRepository.existsById(member1.getId()));
+        assertTrue(memberRepository.count() == 1);
     }
 }

@@ -2,6 +2,9 @@ package com.ironhack.project.edgeservice.controller.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ironhack.project.edgeservice.client.GameProxyClient;
+import com.ironhack.project.edgeservice.client.MemberProxyClient;
+import com.ironhack.project.edgeservice.client.PlayerProxyClient;
 import com.ironhack.project.edgeservice.controller.dto.MemberDTO;
 import com.ironhack.project.edgeservice.models.Game;
 import com.ironhack.project.edgeservice.models.Member;
@@ -16,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -46,6 +50,16 @@ class EdgeMemberControllerImplTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private MemberProxyClient memberProxyClient;
+
+    @MockBean
+    private GameProxyClient gameProxyClient;
+
+    @MockBean
+    private PlayerProxyClient playerProxyClient;
+
 
     @Autowired
     private MemberRepository memberRepository;
@@ -143,6 +157,6 @@ class EdgeMemberControllerImplTest {
         MvcResult mvcResult = mockMvc.perform(delete("/members/"+member1.getId()))
                 .andExpect(status().isAccepted())
                 .andReturn();
-        assertTrue(memberRepository.count() == 1);
+        assertFalse(memberRepository.existsById(member1.getId()));
     }
 }

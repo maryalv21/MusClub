@@ -42,15 +42,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class EdgeGameControllerImplTest {
 
     @Autowired
-    private WebApplicationContext webApplicationContext;
-
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    ApplicationContext context;
-    @Autowired
-    private MemberRepository memberRepository;
+    private WebApplicationContext webApplicationContext;
 
     @Autowired
     private GameRepository gameRepository;
@@ -60,9 +55,6 @@ class EdgeGameControllerImplTest {
 
     @MockBean
     private GameProxyClient gameProxyClient;
-
-    @MockBean
-    private MemberProxyClient memberProxyClient;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -81,33 +73,31 @@ class EdgeGameControllerImplTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
         memberList = new ArrayList<>();
+        user1 = new User(1L, "MEMBER", "12345", game1, null);
         game1 = new Game("12-03-2022", "La alegria", user1);
         game1.setId(1L);
-        user1 = new User(1L, "MEMBER", "12345", game1, null);
-        member1 = new Member(1L, "mafalda", "12345", game1, null, "mafalda",
-                "mafalda","maf@maf.com", "beginner");
 
-        gameRepository.save(game1);
         userRepository.save(user1);
-        memberRepository.save(member1);
+        gameRepository.save(game1);
 
     }
 
     @AfterEach
     void tearDown() {
 
-        gameRepository.deleteAll();
         userRepository.deleteAll();
-        memberRepository.deleteAll();
+        gameRepository.deleteAll();
+
+
     }
 
     @Test
     void findById() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/games/"+ game1.getId()))
+        MvcResult mvcResult = mockMvc.perform(get("/games/"+game1.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
-        assertTrue(mvcResult.getResponse().getContentAsString().contains("1"));
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("game1"));
         assertFalse(mvcResult.getResponse().getContentAsString().contains("manoli"));
     }
 
@@ -127,7 +117,7 @@ class EdgeGameControllerImplTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
-        assertTrue(mvcResult.getResponse().getContentAsString().contains("game1"));
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("user1"));
         assertFalse(mvcResult.getResponse().getContentAsString().contains("manoli"));
 
     }
